@@ -22,7 +22,7 @@ class FeaturedTableViewController: UITableViewController {
             for object in objects!{
                 urls.append(String(object))
             }
-            let i = 0
+            var i = 0
             while i < urls.count{
                 if let url = NSURL(string: urls[i]) {
                     let session = NSURLSession.sharedSession()
@@ -35,6 +35,7 @@ class FeaturedTableViewController: UITableViewController {
                     }
                     download.resume()
                 }
+                i++
             }
             
         }
@@ -64,21 +65,21 @@ class FeaturedTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 3
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        let cell :basicInfoTableViewCell = tableView.dequeueReusableCellWithIdentifier("basicInfo") as! basicInfoTableViewCell
+        let cell:basicInfoTableViewCell = tableView.dequeueReusableCellWithIdentifier("basicInfo", forIndexPath: indexPath) as! basicInfoTableViewCell
         
         cell.pUpload.text  = "swag"
         cell.pTitle.text = "9gag"
         cell.numSons.text = "42000"
-        cell.pImage.image = UIImage(named: "xhj15")
+        cell.pImage.image = UIImage(named: "xjh15")
         
         return cell;
     }

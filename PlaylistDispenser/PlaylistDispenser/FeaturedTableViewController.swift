@@ -53,6 +53,7 @@ class FeaturedTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         downloadPlaylistInfo()
+        print(jsonData)
 
         
     }

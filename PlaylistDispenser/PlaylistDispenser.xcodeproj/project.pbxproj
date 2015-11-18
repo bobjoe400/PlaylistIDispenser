@@ -7,14 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DFB6A09F1BFD213B0001FD6F /* 0.txt in Resources */ = {isa = PBXBuildFile; fileRef = DFB6A09A1BFD213B0001FD6F /* 0.txt */; settings = {ASSET_TAGS = (); }; };
+		DFB6A0A01BFD213B0001FD6F /* 9.txt in Resources */ = {isa = PBXBuildFile; fileRef = DFB6A09B1BFD213B0001FD6F /* 9.txt */; settings = {ASSET_TAGS = (); }; };
+		DFB6A0A11BFD213B0001FD6F /* 13.txt in Resources */ = {isa = PBXBuildFile; fileRef = DFB6A09C1BFD213B0001FD6F /* 13.txt */; settings = {ASSET_TAGS = (); }; };
+		DFB6A0A21BFD213B0001FD6F /* 20.txt in Resources */ = {isa = PBXBuildFile; fileRef = DFB6A09D1BFD213B0001FD6F /* 20.txt */; settings = {ASSET_TAGS = (); }; };
+		DFB6A0A31BFD213B0001FD6F /* 21.txt in Resources */ = {isa = PBXBuildFile; fileRef = DFB6A09E1BFD213B0001FD6F /* 21.txt */; settings = {ASSET_TAGS = (); }; };
+		DFB6A0A51BFD21990001FD6F /* FeaturedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6A0A41BFD21990001FD6F /* FeaturedTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		DFB6A0A91BFD21BF0001FD6F /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6A0A81BFD21BF0001FD6F /* ProfileTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		DFB6A0AB1BFD21EB0001FD6F /* IEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6A0AA1BFD21EB0001FD6F /* IEViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		DFB6A0AD1BFD21F50001FD6F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6A0AC1BFD21F50001FD6F /* ProfileViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		DFB6A0AF1BFD21FB0001FD6F /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6A0AE1BFD21FB0001FD6F /* PlaylistViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		DFB6A0B11BFD22100001FD6F /* PlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6A0B01BFD22100001FD6F /* PlaylistTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		DFB6A0B31BFD222B0001FD6F /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6A0B21BFD222B0001FD6F /* SongTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		DFF8C7221BFBE44F00FDFDA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF8C7211BFBE44F00FDFDA4 /* AppDelegate.swift */; };
-		DFF8C7241BFBE44F00FDFDA4 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF8C7231BFBE44F00FDFDA4 /* FirstViewController.swift */; };
-		DFF8C7261BFBE44F00FDFDA4 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF8C7251BFBE44F00FDFDA4 /* SecondViewController.swift */; };
 		DFF8C7291BFBE44F00FDFDA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFF8C7271BFBE44F00FDFDA4 /* Main.storyboard */; };
 		DFF8C72B1BFBE44F00FDFDA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFF8C72A1BFBE44F00FDFDA4 /* Assets.xcassets */; };
 		DFF8C72E1BFBE44F00FDFDA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFF8C72C1BFBE44F00FDFDA4 /* LaunchScreen.storyboard */; };
 		DFF8C7391BFBE44F00FDFDA4 /* PlaylistDispenserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF8C7381BFBE44F00FDFDA4 /* PlaylistDispenserTests.swift */; };
 		DFF8C7441BFBE44F00FDFDA4 /* PlaylistDispenserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF8C7431BFBE44F00FDFDA4 /* PlaylistDispenserUITests.swift */; };
+		DFF8C7521BFBE85E00FDFDA4 /* basicInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF8C7511BFBE85E00FDFDA4 /* basicInfoTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,10 +46,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DFB6A09A1BFD213B0001FD6F /* 0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 0.txt; path = PlaylistDispenser/0.txt; sourceTree = "<group>"; };
+		DFB6A09B1BFD213B0001FD6F /* 9.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 9.txt; path = PlaylistDispenser/9.txt; sourceTree = "<group>"; };
+		DFB6A09C1BFD213B0001FD6F /* 13.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 13.txt; path = PlaylistDispenser/13.txt; sourceTree = "<group>"; };
+		DFB6A09D1BFD213B0001FD6F /* 20.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 20.txt; path = PlaylistDispenser/20.txt; sourceTree = "<group>"; };
+		DFB6A09E1BFD213B0001FD6F /* 21.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 21.txt; path = PlaylistDispenser/21.txt; sourceTree = "<group>"; };
+		DFB6A0A41BFD21990001FD6F /* FeaturedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedTableViewController.swift; sourceTree = "<group>"; };
+		DFB6A0A81BFD21BF0001FD6F /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
+		DFB6A0AA1BFD21EB0001FD6F /* IEViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IEViewController.swift; sourceTree = "<group>"; };
+		DFB6A0AC1BFD21F50001FD6F /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		DFB6A0AE1BFD21FB0001FD6F /* PlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
+		DFB6A0B01BFD22100001FD6F /* PlaylistTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewController.swift; sourceTree = "<group>"; };
+		DFB6A0B21BFD222B0001FD6F /* SongTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
 		DFF8C71E1BFBE44F00FDFDA4 /* PlaylistDispenser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlaylistDispenser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFF8C7211BFBE44F00FDFDA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DFF8C7231BFBE44F00FDFDA4 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		DFF8C7251BFBE44F00FDFDA4 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		DFF8C7281BFBE44F00FDFDA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DFF8C72A1BFBE44F00FDFDA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DFF8C72D1BFBE44F00FDFDA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +70,7 @@
 		DFF8C73F1BFBE44F00FDFDA4 /* PlaylistDispenserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlaylistDispenserUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFF8C7431BFBE44F00FDFDA4 /* PlaylistDispenserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistDispenserUITests.swift; sourceTree = "<group>"; };
 		DFF8C7451BFBE44F00FDFDA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DFF8C7511BFBE85E00FDFDA4 /* basicInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = basicInfoTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +98,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DFB6A0B41BFD223A0001FD6F /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				DFB6A0AC1BFD21F50001FD6F /* ProfileViewController.swift */,
+				DFB6A0A81BFD21BF0001FD6F /* ProfileTableViewController.swift */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		DFB6A0B61BFD22600001FD6F /* Playlist */ = {
+			isa = PBXGroup;
+			children = (
+				DFB6A0AE1BFD21FB0001FD6F /* PlaylistViewController.swift */,
+				DFB6A0B01BFD22100001FD6F /* PlaylistTableViewController.swift */,
+				DFB6A0B21BFD222B0001FD6F /* SongTableViewCell.swift */,
+			);
+			name = Playlist;
+			sourceTree = "<group>";
+		};
+		DFB6A0B71BFD22690001FD6F /* Import Export */ = {
+			isa = PBXGroup;
+			children = (
+				DFB6A0AA1BFD21EB0001FD6F /* IEViewController.swift */,
+			);
+			name = "Import Export";
+			sourceTree = "<group>";
+		};
+		DFB6A0B81BFD22770001FD6F /* Featured */ = {
+			isa = PBXGroup;
+			children = (
+				DFF8C7511BFBE85E00FDFDA4 /* basicInfoTableViewCell.swift */,
+				DFB6A0A41BFD21990001FD6F /* FeaturedTableViewController.swift */,
+			);
+			name = Featured;
+			sourceTree = "<group>";
+		};
 		DFF8C7151BFBE44F00FDFDA4 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +141,11 @@
 				DFF8C7371BFBE44F00FDFDA4 /* PlaylistDispenserTests */,
 				DFF8C7421BFBE44F00FDFDA4 /* PlaylistDispenserUITests */,
 				DFF8C71F1BFBE44F00FDFDA4 /* Products */,
+				DFB6A09A1BFD213B0001FD6F /* 0.txt */,
+				DFB6A09B1BFD213B0001FD6F /* 9.txt */,
+				DFB6A09C1BFD213B0001FD6F /* 13.txt */,
+				DFB6A09D1BFD213B0001FD6F /* 20.txt */,
+				DFB6A09E1BFD213B0001FD6F /* 21.txt */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,9 +163,11 @@
 			isa = PBXGroup;
 			children = (
 				DFF8C7211BFBE44F00FDFDA4 /* AppDelegate.swift */,
-				DFF8C7231BFBE44F00FDFDA4 /* FirstViewController.swift */,
-				DFF8C7251BFBE44F00FDFDA4 /* SecondViewController.swift */,
 				DFF8C7271BFBE44F00FDFDA4 /* Main.storyboard */,
+				DFB6A0B61BFD22600001FD6F /* Playlist */,
+				DFB6A0B41BFD223A0001FD6F /* Profile */,
+				DFB6A0B71BFD22690001FD6F /* Import Export */,
+				DFB6A0B81BFD22770001FD6F /* Featured */,
 				DFF8C72A1BFBE44F00FDFDA4 /* Assets.xcassets */,
 				DFF8C72C1BFBE44F00FDFDA4 /* LaunchScreen.storyboard */,
 				DFF8C72F1BFBE44F00FDFDA4 /* Info.plist */,
@@ -195,6 +260,7 @@
 				TargetAttributes = {
 					DFF8C71D1BFBE44F00FDFDA4 = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = 4JK4U7VY5R;
 					};
 					DFF8C7331BFBE44F00FDFDA4 = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -231,9 +297,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFB6A0A01BFD213B0001FD6F /* 9.txt in Resources */,
 				DFF8C72E1BFBE44F00FDFDA4 /* LaunchScreen.storyboard in Resources */,
 				DFF8C72B1BFBE44F00FDFDA4 /* Assets.xcassets in Resources */,
 				DFF8C7291BFBE44F00FDFDA4 /* Main.storyboard in Resources */,
+				DFB6A0A21BFD213B0001FD6F /* 20.txt in Resources */,
+				DFB6A0A11BFD213B0001FD6F /* 13.txt in Resources */,
+				DFB6A09F1BFD213B0001FD6F /* 0.txt in Resources */,
+				DFB6A0A31BFD213B0001FD6F /* 21.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +329,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DFF8C7261BFBE44F00FDFDA4 /* SecondViewController.swift in Sources */,
+				DFB6A0AD1BFD21F50001FD6F /* ProfileViewController.swift in Sources */,
+				DFF8C7521BFBE85E00FDFDA4 /* basicInfoTableViewCell.swift in Sources */,
+				DFB6A0AF1BFD21FB0001FD6F /* PlaylistViewController.swift in Sources */,
+				DFB6A0A91BFD21BF0001FD6F /* ProfileTableViewController.swift in Sources */,
+				DFB6A0AB1BFD21EB0001FD6F /* IEViewController.swift in Sources */,
+				DFB6A0A51BFD21990001FD6F /* FeaturedTableViewController.swift in Sources */,
+				DFB6A0B31BFD222B0001FD6F /* SongTableViewCell.swift in Sources */,
 				DFF8C7221BFBE44F00FDFDA4 /* AppDelegate.swift in Sources */,
-				DFF8C7241BFBE44F00FDFDA4 /* FirstViewController.swift in Sources */,
+				DFB6A0B11BFD22100001FD6F /* PlaylistTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,10 +479,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = PlaylistDispenser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cald.PlaylistDispenser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -413,10 +493,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = PlaylistDispenser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cald.PlaylistDispenser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -487,6 +570,7 @@
 				DFF8C74A1BFBE44F00FDFDA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DFF8C74B1BFBE44F00FDFDA4 /* Build configuration list for PBXNativeTarget "PlaylistDispenserTests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +579,7 @@
 				DFF8C74D1BFBE44F00FDFDA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DFF8C74E1BFBE44F00FDFDA4 /* Build configuration list for PBXNativeTarget "PlaylistDispenserUITests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +588,7 @@
 				DFF8C7501BFBE44F00FDFDA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

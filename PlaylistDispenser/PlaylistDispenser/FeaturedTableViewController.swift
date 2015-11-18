@@ -22,9 +22,7 @@ class FeaturedTableViewController: UITableViewController {
             for object in objects!{
                 urls.append(String(object["url"]))
             }
-
-            print(urls)
-
+            
             var i = 0
             while i < urls.count{
                 if let url = NSURL(string: urls[i]) {
@@ -37,6 +35,9 @@ class FeaturedTableViewController: UITableViewController {
                     download.resume()
                 }
                 i++
+                print("")
+                print(self.jsonData)
+                print("")
             }
             
         }
@@ -53,7 +54,7 @@ class FeaturedTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         downloadPlaylistInfo()
-        print(jsonData)
+    
 
         
     }

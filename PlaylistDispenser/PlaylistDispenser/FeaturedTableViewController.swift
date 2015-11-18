@@ -7,8 +7,36 @@
 //
 
 import UIKit
+import Parse
 
 class FeaturedTableViewController: UITableViewController {
+    
+    var jsonData = [JSON]()
+    
+    func downloadPlaylistInfo(){
+        var urls = [String]()
+        let featuredQuery = PFQuery(className: "featuredPlaylistsUrls")
+        featuredQuery.findObjectsInBackgroundWithBlock{
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            for object in objects!{
+                urls.append(String(object))
+            }
+            let i = 0
+            while i < urls.count{
+                if let url = NSURL(string: urls[i]) {
+                    let session = NSURLSession.sharedSession()
+                    let download = session.dataTaskWithURL(url) {
+                        (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+                        self.jsonData.append(JSON(data: data!))
+                    }
+                    download.resume()
+                }
+            }
+            
+        }
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +46,10 @@ class FeaturedTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        downloadPlaylistInfo()
+        print(jsonData)
+        
     }
 
     override func didReceiveMemoryWarning() {

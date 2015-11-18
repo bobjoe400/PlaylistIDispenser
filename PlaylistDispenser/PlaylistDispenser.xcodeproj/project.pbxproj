@@ -19,6 +19,7 @@
 		A334E1221BFD2C0300C20B7C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A334E1211BFD2C0300C20B7C /* AudioToolbox.framework */; };
 		A334E1241BFD2C1600C20B7C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A334E1231BFD2C1600C20B7C /* libsqlite3.tbd */; };
 		A334E1261BFD2C1B00C20B7C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A334E1251BFD2C1B00C20B7C /* libz.tbd */; };
+		A334E1281BFD2EB100C20B7C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334E1271BFD2EB100C20B7C /* SwiftyJSON.swift */; };
 		DFB6A09F1BFD213B0001FD6F /* 0.txt in Resources */ = {isa = PBXBuildFile; fileRef = DFB6A09A1BFD213B0001FD6F /* 0.txt */; };
 		DFB6A0A01BFD213B0001FD6F /* 9.txt in Resources */ = {isa = PBXBuildFile; fileRef = DFB6A09B1BFD213B0001FD6F /* 9.txt */; };
 		DFB6A0A11BFD213B0001FD6F /* 13.txt in Resources */ = {isa = PBXBuildFile; fileRef = DFB6A09C1BFD213B0001FD6F /* 13.txt */; };
@@ -70,6 +71,7 @@
 		A334E1211BFD2C0300C20B7C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A334E1231BFD2C1600C20B7C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		A334E1251BFD2C1B00C20B7C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		A334E1271BFD2EB100C20B7C /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		DFB6A09A1BFD213B0001FD6F /* 0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 0.txt; path = PlaylistDispenser/0.txt; sourceTree = "<group>"; };
 		DFB6A09B1BFD213B0001FD6F /* 9.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 9.txt; path = PlaylistDispenser/9.txt; sourceTree = "<group>"; };
 		DFB6A09C1BFD213B0001FD6F /* 13.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 13.txt; path = PlaylistDispenser/13.txt; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 		DFF8C7151BFBE44F00FDFDA4 = {
 			isa = PBXGroup;
 			children = (
+				A334E1271BFD2EB100C20B7C /* SwiftyJSON.swift */,
 				A334E1251BFD2C1B00C20B7C /* libz.tbd */,
 				A334E1231BFD2C1600C20B7C /* libsqlite3.tbd */,
 				A334E1211BFD2C0300C20B7C /* AudioToolbox.framework */,
@@ -380,6 +383,7 @@
 				DFB6A0AD1BFD21F50001FD6F /* ProfileViewController.swift in Sources */,
 				DFF8C7521BFBE85E00FDFDA4 /* basicInfoTableViewCell.swift in Sources */,
 				DFB6A0AF1BFD21FB0001FD6F /* PlaylistViewController.swift in Sources */,
+				A334E1281BFD2EB100C20B7C /* SwiftyJSON.swift in Sources */,
 				DFB6A0A91BFD21BF0001FD6F /* ProfileTableViewController.swift in Sources */,
 				DFB6A0AB1BFD21EB0001FD6F /* IEViewController.swift in Sources */,
 				DFB6A0A51BFD21990001FD6F /* FeaturedTableViewController.swift in Sources */,

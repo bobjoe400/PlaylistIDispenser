@@ -22,6 +22,9 @@ class FeaturedTableViewController: UITableViewController {
             for object in objects!{
                 urls.append(String(object))
             }
+
+            print(urls)
+
             var i = 0
             while i < urls.count{
                 if let url = NSURL(string: urls[i]) {
@@ -29,9 +32,7 @@ class FeaturedTableViewController: UITableViewController {
                     let download = session.dataTaskWithURL(url) {
                         (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
                         self.jsonData.append(JSON(data: data!))
-                        print("")
-                        print(self.jsonData)
-                        print("")
+                        
                     }
                     download.resume()
                 }

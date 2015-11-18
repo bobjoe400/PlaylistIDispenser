@@ -20,7 +20,7 @@ class FeaturedTableViewController: UITableViewController {
             (objects: [PFObject]?, error: NSError?) -> Void in
             
             for object in objects!{
-                urls.append(String(object))
+                urls.append(String(object["url"]))
             }
 
             print(urls)

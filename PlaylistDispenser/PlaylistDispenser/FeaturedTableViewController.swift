@@ -8,10 +8,9 @@
 
 import UIKit
 import Parse
-
 class FeaturedTableViewController: UITableViewController {
     
-    var jsonData = [JSON]()
+    var jsonData: JSON?
     
     func downloadPlaylistInfo(){
         var urls = [String]()
@@ -22,26 +21,37 @@ class FeaturedTableViewController: UITableViewController {
             for object in objects!{
                 urls.append(String(object["url"]))
             }
-            
+            print(urls)
             var i = 0
             while i < urls.count{
-                if let url = NSURL(string: urls[i]) {
+                if let url = NSURL(string: String(urls[i])) {
                     let session = NSURLSession.sharedSession()
                     let download = session.dataTaskWithURL(url) {
                         (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
-                        self.jsonData.append(JSON(data: data!))
+                        self.jsonData = JSON(data: data!)
+                        print(self.jsonData)
                         
                     }
                     download.resume()
                 }
                 i++
-                print("")
-                print(self.jsonData)
-                print("")
             }
-            
+
         }
         
+    }
+    
+    func testDowload(){
+        if let url = NSURL(string: "https://users.csc.calpoly.edu/~lmatusia/0.json") {
+            let session = NSURLSession.sharedSession()
+            let download = session.dataTaskWithURL(url) {
+                (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+                print(data!)
+                let jsonData = JSON(data: data!)
+                print(jsonData[0]["name"].stringValue)
+            }
+            download.resume()
+        }
     }
 
     override func viewDidLoad() {
@@ -53,6 +63,7 @@ class FeaturedTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+        //testDowload()
         downloadPlaylistInfo()
     
 

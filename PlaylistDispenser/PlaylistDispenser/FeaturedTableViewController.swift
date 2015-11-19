@@ -31,6 +31,7 @@ class FeaturedTableViewController: UITableViewController {
                         (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
                         self.jsonData! = JSON(data: data!)
                         self.featuredPlaylists.append(self.jsonData!)
+                        self.tableView.reloadData()
                     }
                     download.resume()
                 }
@@ -89,8 +90,8 @@ class FeaturedTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell:basicInfoTableViewCell = tableView.dequeueReusableCellWithIdentifier("basicInfo", forIndexPath: indexPath) as! basicInfoTableViewCell
-        
-        cell.pUpload.text  = "swag"
+        let selected_playlist = featuredPlaylists[indexPath.row]
+        cell.pUpload.text  = "The creators of this app."
         cell.pTitle.text = "9gag"
         cell.numSons.text = "42000"
         cell.pImage.image = UIImage(named: "xjh15")

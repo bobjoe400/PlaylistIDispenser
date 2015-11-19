@@ -12,6 +12,7 @@ class FeaturedTableViewController: UITableViewController {
     
     var jsonData: JSON?
     var featuredPlaylists = [JSON]()
+    var imgA = [UIImage] //= [UIImage,UIImage,UIImage,UIImage,UIImage]
     
     func downloadPlaylistInfo(){
         self.jsonData = []
@@ -33,7 +34,7 @@ class FeaturedTableViewController: UITableViewController {
                         self.jsonData! = JSON(data: data!)
                         self.featuredPlaylists.append(self.jsonData!)
                         self.tableView.reloadData()
-
+                        self.downloadImage()
                     }
                     download.resume()
                 }
@@ -45,6 +46,29 @@ class FeaturedTableViewController: UITableViewController {
             //print(self.jsonData)
         }
         
+    }
+    
+    func getDataFromUrl(url:NSURL, completion: ((data: NSData?, response: NSURLResponse?, error: NSError? ) -> Void)) {
+        NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
+            completion(data: data, response: response, error: error)
+            }.resume()
+    }
+    
+    func downloadImage(){
+        var image = UIImage()
+        //print("Started downloading \"\(url.URLByDeletingPathExtension!.lastPathComponent!)\".")
+        for json in featuredPlaylists{
+        getDataFromUrl(NSURL(string: json["tracks"][0]["track"]["albumArtRef"][0]["url"].stringValue)!) { (data, response, error)  in
+            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                guard let data = data where error == nil else { return }
+                //print("Finished downloading \"\(url.URLByDeletingPathExtension!.lastPathComponent!)\".")
+                image = UIImage(data: data)!
+                self.imgA.append(image)
+                self.tableView.reloadData()
+            }
+        }
+        }
+        //self.tableView.reloadData()
     }
     
     func testDowload(){
@@ -72,6 +96,7 @@ class FeaturedTableViewController: UITableViewController {
         //testDowload()
         //self.jsonData = []
         downloadPlaylistInfo()
+        //downloadImage()
         //print(self.jsonData)
 
         
@@ -100,8 +125,10 @@ class FeaturedTableViewController: UITableViewController {
         cell.pUpload.text  = selected_playlist["ownerName"].stringValue
         cell.pTitle.text = selected_playlist["name"].stringValue
         cell.numSons.text = String(selected_playlist["tracks"].count)
-        cell.pImage.image = UIImage(named: "xjh15")
-        
+        //if cell.pImage.image == nil{
+        //    cell.pImage.image = downloadImage(NSURL(string: selected_playlist["tracks"][0]["track"]["albumArtRef"][0]["url"].stringValue)!)
+        //}
+        cell.pImage.image = self.imgA[indexPath.row]
         return cell;
     }
 
@@ -150,14 +177,14 @@ class FeaturedTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
-
+    /*
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
 
+    */
 }

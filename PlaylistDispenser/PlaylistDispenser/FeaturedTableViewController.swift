@@ -15,6 +15,7 @@ class FeaturedTableViewController: UITableViewController {
     
     func downloadPlaylistInfo(){
         var jsonData: JSON?
+        //imgA = []
         var urls = [String]()
         let featuredQuery = PFQuery(className: "featuredPlaylistsUrls")
         featuredQuery.findObjectsInBackgroundWithBlock{

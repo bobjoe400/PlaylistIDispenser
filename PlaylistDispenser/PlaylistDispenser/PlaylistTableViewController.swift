@@ -43,6 +43,7 @@ class PlaylistTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if playlist_data!["tracks"][indexPath.row]["track"] == nil {
+            
             return 0
         }
         return 52

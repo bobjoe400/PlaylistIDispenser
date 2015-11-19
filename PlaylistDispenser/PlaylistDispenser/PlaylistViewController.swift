@@ -20,6 +20,8 @@ class PlaylistViewController: UIViewController {
     //var managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     var check: Bool?
     
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+    }
     @IBOutlet weak var uName: UILabel!
     @IBOutlet weak var pImage: UIImageView!
     @IBOutlet weak var pTitle: UILabel!

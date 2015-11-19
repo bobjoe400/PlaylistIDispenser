@@ -142,6 +142,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF5BDE6E1BFD9A0F00239038 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				DF5BDE671BFD906900239038 /* LocalData.xcdatamodeld */,
+				DF5BDE6A1BFD96C100239038 /* IsSaved+CoreDataProperties.swift */,
+				DF5BDE6B1BFD96C100239038 /* IsSaved.swift */,
+			);
+			name = "Core Data";
+			sourceTree = "<group>";
+		};
 		DFB6A0B41BFD223A0001FD6F /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,17 +230,15 @@
 			children = (
 				A334E1271BFD2EB100C20B7C /* SwiftyJSON.swift */,
 				DFF8C7211BFBE44F00FDFDA4 /* AppDelegate.swift */,
-				DF5BDE671BFD906900239038 /* LocalData.xcdatamodeld */,
-				DF5BDE6A1BFD96C100239038 /* IsSaved+CoreDataProperties.swift */,
-				DF5BDE6B1BFD96C100239038 /* IsSaved.swift */,
 				DFF8C7271BFBE44F00FDFDA4 /* Main.storyboard */,
+				DFF8C72F1BFBE44F00FDFDA4 /* Info.plist */,
+				DFF8C72A1BFBE44F00FDFDA4 /* Assets.xcassets */,
+				DFF8C72C1BFBE44F00FDFDA4 /* LaunchScreen.storyboard */,
+				DF5BDE6E1BFD9A0F00239038 /* Core Data */,
 				DFB6A0B61BFD22600001FD6F /* Playlist */,
 				DFB6A0B41BFD223A0001FD6F /* Profile */,
 				DFB6A0B71BFD22690001FD6F /* Import Export */,
 				DFB6A0B81BFD22770001FD6F /* Featured */,
-				DFF8C72A1BFBE44F00FDFDA4 /* Assets.xcassets */,
-				DFF8C72C1BFBE44F00FDFDA4 /* LaunchScreen.storyboard */,
-				DFF8C72F1BFBE44F00FDFDA4 /* Info.plist */,
 			);
 			path = PlaylistDispenser;
 			sourceTree = "<group>";

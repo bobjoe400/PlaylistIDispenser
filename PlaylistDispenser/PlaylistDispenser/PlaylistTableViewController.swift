@@ -10,13 +10,13 @@ import UIKit
 
 class PlaylistTableViewController: UITableViewController {
 
-    var playlist_data: JSON?
+    var playlists: JSON?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.reloadData()
-        print(playlist_data)
+
+        //print(playlist_data)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -33,7 +33,7 @@ class PlaylistTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -43,14 +43,8 @@ class PlaylistTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell :SongTableViewCell = tableView.dequeueReusableCellWithIdentifier("songCell") as! SongTableViewCell
-        print(playlist_data)
-        playlist_data = playlist_data!["tracks"]
-        var selected_track = playlist_data![indexPath.row]
-        var duration = selected_track["durationMillis"].doubleValue
-        duration = duration * 100
-        cell.sTitle.text = selected_track["title"].stringValue
-        cell.aTitle.text = selected_track["albumArtist"].stringValue
-        cell.sLength.text = String(duration)
+        //print(playlist_data)
+
         
         return cell;
     }

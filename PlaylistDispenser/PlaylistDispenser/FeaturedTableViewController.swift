@@ -54,11 +54,18 @@ class FeaturedTableViewController: UITableViewController {
             }.resume()
     }
     
+    func downloadImage(urls: String){
+        let url = NSURL(string: urls)
+        let data = NSData(contentsOfURL: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
+        //imageURL.image = UIImage(data: data!)
+        self.imgA.append(data)
+    }
+    
     func downloadImage(){
         var image = UIImage()
                 //print("Started downloading \"\(url.URLByDeletingPathExtension!.lastPathComponent!)\".")
-        if featuredPlaylists.count == 5{
-            for json in featuredPlaylists{
+        if self.featuredPlaylists.count == 5{
+            for json in self.featuredPlaylists{
                 getDataFromUrl(NSURL(string: json["tracks"][0]["track"]["albumArtRef"][0]["url"].stringValue)!) { (data, response, error)  in
                     dispatch_async(dispatch_get_main_queue()) { () -> Void in
                         let url = NSURL(string: json["tracks"][0]["track"]["albumArtRef"][0]["url"].stringValue)!
@@ -74,6 +81,7 @@ class FeaturedTableViewController: UITableViewController {
         }
         //self.tableView.reloadData()
     }
+    
     
     func testDowload(){
         if let url = NSURL(string: "https://users.csc.calpoly.edu/~lmatusia/0.json") {
@@ -135,7 +143,7 @@ class FeaturedTableViewController: UITableViewController {
         //if cell.pImage.image == nil{
         //    cell.pImage.image = downloadImage(NSURL(string: selected_playlist["tracks"][0]["track"]["albumArtRef"][0]["url"].stringValue)!)
         //}
-        if self.imgA.count == featuredPlaylists.count{
+        if self.imgA.count == self.featuredPlaylists.count{
             cell.pImage.image = self.imgA[indexPath.row]
         }
         return cell;

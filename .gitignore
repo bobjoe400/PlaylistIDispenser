@@ -1,6 +1,6 @@
 # Xcode
 #
-*.storyboard
+Main.storyboard
 build/
 *.pbxuser
 !default.pbxuser

@@ -12,7 +12,7 @@ class FeaturedTableViewController: UITableViewController {
     
     var jsonData: JSON?
     var featuredPlaylists = [JSON]()
-    var imgA = [UIImage] //= [UIImage,UIImage,UIImage,UIImage,UIImage]
+    var imgA = [UIImage]() //= [UIImage,UIImage,UIImage,UIImage,UIImage]
     
     func downloadPlaylistInfo(){
         self.jsonData = []
@@ -33,8 +33,8 @@ class FeaturedTableViewController: UITableViewController {
                         (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
                         self.jsonData! = JSON(data: data!)
                         self.featuredPlaylists.append(self.jsonData!)
-                        self.tableView.reloadData()
                         self.downloadImage()
+                        self.tableView.reloadData()
                     }
                     download.resume()
                 }
@@ -56,17 +56,21 @@ class FeaturedTableViewController: UITableViewController {
     
     func downloadImage(){
         var image = UIImage()
-        //print("Started downloading \"\(url.URLByDeletingPathExtension!.lastPathComponent!)\".")
-        for json in featuredPlaylists{
-        getDataFromUrl(NSURL(string: json["tracks"][0]["track"]["albumArtRef"][0]["url"].stringValue)!) { (data, response, error)  in
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                guard let data = data where error == nil else { return }
-                //print("Finished downloading \"\(url.URLByDeletingPathExtension!.lastPathComponent!)\".")
-                image = UIImage(data: data)!
-                self.imgA.append(image)
-                self.tableView.reloadData()
+                //print("Started downloading \"\(url.URLByDeletingPathExtension!.lastPathComponent!)\".")
+        if featuredPlaylists.count == 5{
+            for json in featuredPlaylists{
+                getDataFromUrl(NSURL(string: json["tracks"][0]["track"]["albumArtRef"][0]["url"].stringValue)!) { (data, response, error)  in
+                    dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                        let url = NSURL(string: json["tracks"][0]["track"]["albumArtRef"][0]["url"].stringValue)!
+                        guard let data = data where error == nil else { return }
+                        print("Finished downloading \"\(url.URLByDeletingPathExtension!.lastPathComponent!)\".")
+                        image = UIImage(data: data)!
+                        self.imgA.append(image)
+                        //self.tableView.reloadData()
+                    }
+                }
             }
-        }
+            self.tableView.reloadData()
         }
         //self.tableView.reloadData()
     }
@@ -96,6 +100,9 @@ class FeaturedTableViewController: UITableViewController {
         //testDowload()
         //self.jsonData = []
         downloadPlaylistInfo()
+        /*repeat{
+            downloadImage()
+        }while self.featuredPlaylists.count != 5*/
         //downloadImage()
         //print(self.jsonData)
 
@@ -128,7 +135,9 @@ class FeaturedTableViewController: UITableViewController {
         //if cell.pImage.image == nil{
         //    cell.pImage.image = downloadImage(NSURL(string: selected_playlist["tracks"][0]["track"]["albumArtRef"][0]["url"].stringValue)!)
         //}
-        cell.pImage.image = self.imgA[indexPath.row]
+        if self.imgA.count == featuredPlaylists.count{
+            cell.pImage.image = self.imgA[indexPath.row]
+        }
         return cell;
     }
 

@@ -16,9 +16,11 @@ class PlaylistViewController: UIViewController {
     var pName: String?
     var num: String?
     var image: UIImage?
+    var uInfo: String?
     //var managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     var check: Bool?
     
+    @IBOutlet weak var uName: UILabel!
     @IBOutlet weak var pImage: UIImageView!
     @IBOutlet weak var pTitle: UILabel!
     @IBOutlet weak var numSongs: UILabel!
@@ -42,6 +44,7 @@ class PlaylistViewController: UIViewController {
         self.pTitle.text = self.pName!
         self.numSongs.text = self.num!
         self.check = false
+        self.uName.text = self.uInfo!
         //let newItem = NSEntityDescription.insertNewObjectForEntityForName("IsSaved", inManagedObjectContext: self.managedObjectContext) as! IsSaved
         //newItem.isit = false
         //check = newItem.isit as Bool

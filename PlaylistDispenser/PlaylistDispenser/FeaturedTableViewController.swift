@@ -59,6 +59,15 @@ class FeaturedTableViewController: UITableViewController {
             }
         }
     }
+    
+    func delay(delay:Double, closure:()->()) {
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(delay * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(), closure)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,14 +111,15 @@ class FeaturedTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell:basicInfoTableViewCell = tableView.dequeueReusableCellWithIdentifier("basicInfo", forIndexPath: indexPath) as! basicInfoTableViewCell
-        let selected_playlist = featuredPlaylists[indexPath.row]
+        delay(0.1){
+                let selected_playlist = self.featuredPlaylists[indexPath.row]
         cell.pUpload.text  = selected_playlist["ownerName"].stringValue
         cell.pTitle.text = selected_playlist["name"].stringValue
         cell.numSons.text = String(selected_playlist["tracks"].count)
-        cell.pImage.image = imgA[indexPath.row]
+        cell.pImage.image = self.imgA[indexPath.row]
+        }
         return cell;
     }
-
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
@@ -162,7 +172,7 @@ class FeaturedTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if "f2playlist" == segue.identifier{
+        if "toPlaylist" == segue.identifier{
             let dest = segue.destinationViewController as! PlaylistViewController
             let data = featuredPlaylists[tableView.indexPathForSelectedRow!.row]
             dest.playlist_data = data
@@ -170,6 +180,7 @@ class FeaturedTableViewController: UITableViewController {
             dest.num = String(data["tracks"].count)
             dest.image = self.imgA[tableView.indexPathForSelectedRow!.row]
             dest.title = data["name"].stringValue
+            dest.uInfo = data["ownerName"].stringValue
         }
     }
 

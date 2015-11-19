@@ -8,37 +8,41 @@
 
 import UIKit
 import Parse
+
 class FeaturedTableViewController: UITableViewController {
     
     var featuredPlaylists = [JSON]()
     var imgA = [UIImage]()
     
     func downloadPlaylistInfo(){
-        var jsonData: JSON?
-        //imgA = []
-        var urls = [String]()
         let featuredQuery = PFQuery(className: "featuredPlaylistsUrls")
         featuredQuery.findObjectsInBackgroundWithBlock{
             (objects: [PFObject]?, error: NSError?) -> Void in
-            
+            var urls = [String]()
+            var jsonData: JSON?
+            var imgB = [UIImage?]()
+            var featuredPlaylist = [JSON?]()
+            var complete = [Bool]()
             for object in objects!{
                 urls.append(String(object["url"]))
+                complete.append(false)
+                imgB.append(nil)
+                featuredPlaylist.append(nil)
             }
             print(urls)
-            var i = 0
-            while i < urls.count{
-                if let url = NSURL(string: String(urls[i])) {
+            
+            for (i,url) in urls.enumerate(){
+                if let urlstring = NSURL(string: url) {
                     let session = NSURLSession.sharedSession()
-                    let download = session.dataTaskWithURL(url) {
+                    let download = session.dataTaskWithURL(urlstring) {
                         (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
                         jsonData = JSON(data: data!)
                         if self.featuredPlaylists.contains(jsonData!){
-                            dispatch_async(dispatch_get_main_queue()){
-                                self.tableView.reloadData()
-                            }
-                            i++
+                            let oldindex = self.featuredPlaylists.indexOf(jsonData!)
+                            featuredPlaylist[i] = self.featuredPlaylists[oldindex!]
+                            imgB[i] = self.imgA[oldindex!]
                         }else{
-                            self.featuredPlaylists.append(jsonData!)
+                            featuredPlaylist[i] = jsonData!
                             var usl = NSURL(string: "")
                             var j = 0
                             while usl == NSURL(string: ""){
@@ -47,28 +51,46 @@ class FeaturedTableViewController: UITableViewController {
                             }
                             let dato = NSData(contentsOfURL: usl!)!
                             let image = UIImage(data: dato)
-                            self.imgA.append(image!)
+                            imgB[i] = image!
+
+                        }
+                        complete[i] = true
+                        var alldone = true
+                        for b in complete{
+                            alldone = alldone && b
+                        }
+                        if alldone{
                             dispatch_async(dispatch_get_main_queue()){
+                                //self.featuredPlaylists = featuredPlaylist
+                                //self.imgA = imgB
+                                var imgC = [UIImage]()
+                                var feat = [JSON]()
+                                for j in imgB{
+                                    imgC.append(j!)
+                                }
+                                for j in featuredPlaylist{
+                                    feat.append(j!)
+                                }
+                                self.imgA = imgC
+                                self.featuredPlaylists = feat
                                 self.tableView.reloadData()
                             }
                         }
-                        jsonData = nil
                     }
                     download.resume()
                 }
-                i++
             }
         }
     }
     
-    func delay(delay:Double, closure:()->()) {
+    /*func delay(delay:Double, closure:()->()) {
         dispatch_after(
             dispatch_time(
                 DISPATCH_TIME_NOW,
                 Int64(delay * Double(NSEC_PER_SEC))
             ),
             dispatch_get_main_queue(), closure)
-    }
+    }*/
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,13 +134,11 @@ class FeaturedTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell:basicInfoTableViewCell = tableView.dequeueReusableCellWithIdentifier("basicInfo", forIndexPath: indexPath) as! basicInfoTableViewCell
-        delay(0.1){
-                let selected_playlist = self.featuredPlaylists[indexPath.row]
+        let selected_playlist = self.featuredPlaylists[indexPath.row]
         cell.pUpload.text  = selected_playlist["ownerName"].stringValue
         cell.pTitle.text = selected_playlist["name"].stringValue
         cell.numSons.text = String(selected_playlist["tracks"].count)
         cell.pImage.image = self.imgA[indexPath.row]
-        }
         return cell;
     }
     /*
@@ -184,6 +204,4 @@ class FeaturedTableViewController: UITableViewController {
             dest.uInfo = data["ownerName"].stringValue
         }
     }
-
-    
 }

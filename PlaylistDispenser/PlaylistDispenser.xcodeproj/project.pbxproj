@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A334E1111BFD2BA000C20B7C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A334E10F1BFD2BA000C20B7C /* Bolts.framework */; };
-		A334E1121BFD2BA000C20B7C /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A334E1101BFD2BA000C20B7C /* Parse.framework */; };
 		A334E1141BFD2BB500C20B7C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A334E1131BFD2BB500C20B7C /* SystemConfiguration.framework */; };
 		A334E1161BFD2BBF00C20B7C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A334E1151BFD2BBF00C20B7C /* StoreKit.framework */; };
 		A334E1181BFD2BD000C20B7C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A334E1171BFD2BD000C20B7C /* Security.framework */; };
@@ -20,6 +19,7 @@
 		A334E1241BFD2C1600C20B7C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A334E1231BFD2C1600C20B7C /* libsqlite3.tbd */; };
 		A334E1261BFD2C1B00C20B7C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A334E1251BFD2C1B00C20B7C /* libz.tbd */; };
 		A334E1281BFD2EB100C20B7C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334E1271BFD2EB100C20B7C /* SwiftyJSON.swift */; };
+		DF2DF8201BFE8ECA001C43C1 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF2DF81F1BFE8ECA001C43C1 /* Parse.framework */; settings = {ASSET_TAGS = (); }; };
 		DF5BDE691BFD906900239038 /* LocalData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF5BDE671BFD906900239038 /* LocalData.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
 		DF5BDE6C1BFD96C100239038 /* IsSaved+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5BDE6A1BFD96C100239038 /* IsSaved+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
 		DF5BDE6D1BFD96C100239038 /* IsSaved.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5BDE6B1BFD96C100239038 /* IsSaved.swift */; settings = {ASSET_TAGS = (); }; };
@@ -63,7 +63,6 @@
 
 /* Begin PBXFileReference section */
 		A334E10F1BFD2BA000C20B7C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		A334E1101BFD2BA000C20B7C /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		A334E1131BFD2BB500C20B7C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A334E1151BFD2BBF00C20B7C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A334E1171BFD2BD000C20B7C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -75,6 +74,7 @@
 		A334E1231BFD2C1600C20B7C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		A334E1251BFD2C1B00C20B7C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		A334E1271BFD2EB100C20B7C /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = ../SwiftyJSON.swift; sourceTree = "<group>"; };
+		DF2DF81F1BFE8ECA001C43C1 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		DF5BDE681BFD906900239038 /* LocalData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalData.xcdatamodel; sourceTree = "<group>"; };
 		DF5BDE6A1BFD96C100239038 /* IsSaved+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IsSaved+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DF5BDE6B1BFD96C100239038 /* IsSaved.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsSaved.swift; sourceTree = "<group>"; };
@@ -120,7 +120,7 @@
 				A334E1181BFD2BD000C20B7C /* Security.framework in Frameworks */,
 				A334E1161BFD2BBF00C20B7C /* StoreKit.framework in Frameworks */,
 				A334E1141BFD2BB500C20B7C /* SystemConfiguration.framework in Frameworks */,
-				A334E1121BFD2BA000C20B7C /* Parse.framework in Frameworks */,
+				DF2DF8201BFE8ECA001C43C1 /* Parse.framework in Frameworks */,
 				A334E1111BFD2BA000C20B7C /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,7 +202,6 @@
 				A334E1151BFD2BBF00C20B7C /* StoreKit.framework */,
 				A334E1131BFD2BB500C20B7C /* SystemConfiguration.framework */,
 				A334E10F1BFD2BA000C20B7C /* Bolts.framework */,
-				A334E1101BFD2BA000C20B7C /* Parse.framework */,
 				DFF8C7201BFBE44F00FDFDA4 /* PlaylistDispenser */,
 				DFF8C7371BFBE44F00FDFDA4 /* PlaylistDispenserTests */,
 				DFF8C7421BFBE44F00FDFDA4 /* PlaylistDispenserUITests */,
@@ -228,6 +227,7 @@
 		DFF8C7201BFBE44F00FDFDA4 /* PlaylistDispenser */ = {
 			isa = PBXGroup;
 			children = (
+				DF2DF81F1BFE8ECA001C43C1 /* Parse.framework */,
 				A334E1271BFD2EB100C20B7C /* SwiftyJSON.swift */,
 				DFF8C7211BFBE44F00FDFDA4 /* AppDelegate.swift */,
 				DFF8C7271BFBE44F00FDFDA4 /* Main.storyboard */,
@@ -328,7 +328,6 @@
 				TargetAttributes = {
 					DFF8C71D1BFBE44F00FDFDA4 = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = 4JK4U7VY5R;
 					};
 					DFF8C7331BFBE44F00FDFDA4 = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -556,6 +555,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/PlaylistDispenser",
 				);
 				INFOPLIST_FILE = PlaylistDispenser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -574,6 +574,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/PlaylistDispenser",
 				);
 				INFOPLIST_FILE = PlaylistDispenser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

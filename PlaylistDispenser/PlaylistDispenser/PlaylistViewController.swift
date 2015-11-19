@@ -61,7 +61,7 @@ class PlaylistViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if segue.identifier == "embedSegue"{
-            var detailScene = segue.destinationViewController as! PlaylistTableViewController
+            let detailScene = segue.destinationViewController as! PlaylistTableViewController
             detailScene.playlist_data = self.playlist_data
         }
     }

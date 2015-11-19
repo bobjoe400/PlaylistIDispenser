@@ -10,12 +10,11 @@ import UIKit
 import Parse
 class FeaturedTableViewController: UITableViewController {
     
-    var jsonData: JSON?
     var featuredPlaylists = [JSON]()
-    var imgA = [UIImage]() //= [UIImage,UIImage,UIImage,UIImage,UIImage]
+    var imgA = [UIImage]()
     
     func downloadPlaylistInfo(){
-        self.jsonData = []
+        var jsonData: JSON?
         var urls = [String]()
         let featuredQuery = PFQuery(className: "featuredPlaylistsUrls")
         featuredQuery.findObjectsInBackgroundWithBlock{
@@ -31,76 +30,33 @@ class FeaturedTableViewController: UITableViewController {
                     let session = NSURLSession.sharedSession()
                     let download = session.dataTaskWithURL(url) {
                         (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
-                        self.jsonData! = JSON(data: data!)
-                        self.featuredPlaylists.append(self.jsonData!)
-                        var usl = NSURL(string: "")
-                        var j = 0
-                        while usl == NSURL(string: ""){
-                            usl = NSURL(string: self.jsonData!["tracks"][j]["track"]["albumArtRef"][0]["url"].stringValue)!
-                            j++
+                        jsonData = JSON(data: data!)
+                        if self.featuredPlaylists.contains(jsonData!){
+                            dispatch_async(dispatch_get_main_queue()){
+                                self.tableView.reloadData()
+                            }
+                            i++
+                        }else{
+                            self.featuredPlaylists.append(jsonData!)
+                            var usl = NSURL(string: "")
+                            var j = 0
+                            while usl == NSURL(string: ""){
+                                usl = NSURL(string: jsonData!["tracks"][j]["track"]["albumArtRef"][0]["url"].stringValue)!
+                                j++
+                            }
+                            let dato = NSData(contentsOfURL: usl!)!
+                            let image = UIImage(data: dato)
+                            self.imgA.append(image!)
+                            dispatch_async(dispatch_get_main_queue()){
+                                self.tableView.reloadData()
+                            }
                         }
-                        let dato = NSData(contentsOfURL: usl!)!
-                        let image = UIImage(data: dato)
-                        self.imgA.append(image!)
-                        self.tableView.reloadData()
+                        jsonData = nil
                     }
                     download.resume()
                 }
                 i++
-                /*if i == urls.count{
-                    run = true
-                }*/
             }
-            //print(self.jsonData)
-        }
-        
-    }
-    
-    func getDataFromUrl(url:NSURL, completion: ((data: NSData?, response: NSURLResponse?, error: NSError? ) -> Void)) {
-        NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
-            completion(data: data, response: response, error: error)
-            }.resume()
-    }
-    
-    func downloadImage(urls: String){
-        let url = NSURL(string: urls)
-        let data = NSData(contentsOfURL: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
-        //imageURL.image = UIImage(data: data!)
-        self.imgA.append(UIImage(data: data!)!)
-    }
-    
-    func downloadImage(){
-        var image = UIImage()
-                //print("Started downloading \"\(url.URLByDeletingPathExtension!.lastPathComponent!)\".")
-        if self.featuredPlaylists.count == 5{
-            for json in self.featuredPlaylists{
-                getDataFromUrl(NSURL(string: json["tracks"][0]["track"]["albumArtRef"][0]["url"].stringValue)!) { (data, response, error)  in
-                    dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                        let url = NSURL(string: json["tracks"][0]["track"]["albumArtRef"][0]["url"].stringValue)!
-                        guard let data = data where error == nil else { return }
-                        print("Finished downloading \"\(url.URLByDeletingPathExtension!.lastPathComponent!)\".")
-                        image = UIImage(data: data)!
-                        self.imgA.append(image)
-                        //self.tableView.reloadData()
-                    }
-                }
-            }
-            self.tableView.reloadData()
-        }
-        //self.tableView.reloadData()
-    }
-    
-    
-    func testDowload(){
-        if let url = NSURL(string: "https://users.csc.calpoly.edu/~lmatusia/0.json") {
-            let session = NSURLSession.sharedSession()
-            let download = session.dataTaskWithURL(url) {
-                (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
-                print(data!)
-                let jsonData = JSON(data: data!)
-                print(jsonData["tracks"].count)
-            }
-            download.resume()
         }
     }
 
@@ -113,18 +69,20 @@ class FeaturedTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        //testDowload()
-        //self.jsonData = []
         downloadPlaylistInfo()
-        /*repeat{
-            downloadImage()
-        }while self.featuredPlaylists.count != 5*/
-        //downloadImage()
-        //print(self.jsonData)
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControl!)
 
         
     }
 
+    func refresh(sender:AnyObject){
+        downloadPlaylistInfo()
+        self.refreshControl!.endRefreshing()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -148,14 +106,7 @@ class FeaturedTableViewController: UITableViewController {
         cell.pUpload.text  = selected_playlist["ownerName"].stringValue
         cell.pTitle.text = selected_playlist["name"].stringValue
         cell.numSons.text = String(selected_playlist["tracks"].count)
-        //cell.pImage.image = UIImage(named: "xjh15")
         cell.pImage.image = imgA[indexPath.row]
-        //if cell.pImage.image == nil{
-        //    cell.pImage.image = downloadImage(NSURL(string: selected_playlist["tracks"][0]["track"]["albumArtRef"][0]["url"].stringValue)!)
-        //}
-        //if self.imgA.count == self.featuredPlaylists.count{
-            //cell.pImage.image = self.imgA[indexPath.row]
-        //}
         return cell;
     }
 

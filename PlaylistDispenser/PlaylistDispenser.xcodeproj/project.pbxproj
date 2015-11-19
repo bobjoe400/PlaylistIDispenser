@@ -557,6 +557,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				GCC_ENABLE_OBJC_GC = supported;
 				INFOPLIST_FILE = PlaylistDispenser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cald.PlaylistDispenser;
@@ -575,6 +576,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				GCC_ENABLE_OBJC_GC = supported;
 				INFOPLIST_FILE = PlaylistDispenser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cald.PlaylistDispenser;

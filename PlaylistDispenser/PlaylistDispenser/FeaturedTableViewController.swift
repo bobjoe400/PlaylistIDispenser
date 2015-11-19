@@ -14,6 +14,7 @@ class FeaturedTableViewController: UITableViewController {
     var featuredPlaylists = [JSON]()
     
     func downloadPlaylistInfo(){
+        self.jsonData = []
         var urls = [String]()
         let featuredQuery = PFQuery(className: "featuredPlaylistsUrls")
         featuredQuery.findObjectsInBackgroundWithBlock{
@@ -32,12 +33,16 @@ class FeaturedTableViewController: UITableViewController {
                         self.jsonData! = JSON(data: data!)
                         self.featuredPlaylists.append(self.jsonData!)
                         self.tableView.reloadData()
+
                     }
                     download.resume()
                 }
                 i++
+                /*if i == urls.count{
+                    run = true
+                }*/
             }
-
+            //print(self.jsonData)
         }
         
     }
@@ -49,7 +54,7 @@ class FeaturedTableViewController: UITableViewController {
                 (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
                 print(data!)
                 let jsonData = JSON(data: data!)
-                print(jsonData[0]["name"].stringValue)
+                print(jsonData["tracks"].count)
             }
             download.resume()
         }
@@ -65,8 +70,9 @@ class FeaturedTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         //testDowload()
+        //self.jsonData = []
         downloadPlaylistInfo()
-    
+        //print(self.jsonData)
 
         
     }
@@ -91,9 +97,9 @@ class FeaturedTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell:basicInfoTableViewCell = tableView.dequeueReusableCellWithIdentifier("basicInfo", forIndexPath: indexPath) as! basicInfoTableViewCell
         let selected_playlist = featuredPlaylists[indexPath.row]
-        cell.pUpload.text  = "The creators of this app."
-        cell.pTitle.text = "9gag"
-        cell.numSons.text = "42000"
+        cell.pUpload.text  = selected_playlist["ownerName"].stringValue
+        cell.pTitle.text = selected_playlist["name"].stringValue
+        cell.numSons.text = String(selected_playlist["tracks"].count)
         cell.pImage.image = UIImage(named: "xjh15")
         
         return cell;

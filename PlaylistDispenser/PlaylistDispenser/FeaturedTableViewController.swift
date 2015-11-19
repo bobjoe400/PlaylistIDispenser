@@ -140,7 +140,7 @@ class FeaturedTableViewController: UITableViewController {
         cell.pUpload.text  = selected_playlist["ownerName"].stringValue
         cell.pTitle.text = selected_playlist["name"].stringValue
         cell.numSons.text = String(selected_playlist["tracks"].count)
-        self.imgA.image = UIImage(named: "xjh15")
+        cell.pImage.image = UIImage(named: "xjh15")
         //if cell.pImage.image == nil{
         //    cell.pImage.image = downloadImage(NSURL(string: selected_playlist["tracks"][0]["track"]["albumArtRef"][0]["url"].stringValue)!)
         //}

@@ -203,9 +203,14 @@ class FeaturedTableViewController: UITableViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if "f2playlist" == segue.identifier{
-            let dest = segue.destinationViewController as! PlaylistTableViewController
+            let dest = segue.destinationViewController as! PlaylistViewController
             let data = featuredPlaylists[tableView.indexPathForSelectedRow!.row]
             dest.playlist_data = data
+            let imagez = UIImage(named: "xjh15")
+            dest.pName = data["name"].stringValue
+            dest.num = String(data["tracks"].count)
+            dest.image = imagez
+            dest.title = data["name"].stringValue
         }
     }
 

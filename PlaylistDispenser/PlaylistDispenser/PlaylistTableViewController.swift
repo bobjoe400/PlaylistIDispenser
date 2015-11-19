@@ -10,12 +10,12 @@ import UIKit
 
 class PlaylistTableViewController: UITableViewController {
 
-    var playlists: JSON?
+    var playlist_data: JSON?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //print(playlist_data)
         //print(playlist_data)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -41,13 +41,37 @@ class PlaylistTableViewController: UITableViewController {
         return playlist_data!["tracks"].count
     }
     
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if playlist_data!["tracks"][indexPath.row]["track"] == nil {
+            return 0
+        }
+        return 52
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell :SongTableViewCell = tableView.dequeueReusableCellWithIdentifier("songCell") as! SongTableViewCell
         //print(playlist_data)
-
-        
+        if playlist_data!["tracks"][indexPath.row]["track"] == nil {
+            cell.hidden = true
+        }
+        let selected_track = playlist_data!["tracks"][indexPath.row]["track"]
+        cell.sTitle.text = selected_track["title"].stringValue
+        cell.aTitle.text = selected_track["artist"].stringValue
+        cell.sLength.text = stringFromTimeInterval(NSTimeInterval(selected_track["durationMillis"].doubleValue)) as String
+        //print(selected_track)
         return cell;
     }
+    
+    func stringFromTimeInterval(interval:NSTimeInterval) -> NSString {
+        
+        var ti = NSInteger(interval)
+        
+        var seconds = ti/1000 % 60
+        var minutes = ((ti/1000)/60) % 60
+        
+        return NSString(format: "%0.2d:%0.2d",minutes,seconds)
+    }
+
 
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -94,14 +118,14 @@ class PlaylistTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    //override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-    }
-    */
+   
 
+    //}
 }

@@ -15,7 +15,8 @@ class PlaylistTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tableView.reloadData()
+        print(playlist_data)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -37,11 +38,12 @@ class PlaylistTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return playlist_data!["tracks"].count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        let cell :SongTableViewCell = tableView.dequeueReusableCellWithIdentifier("sCell") as! SongTableViewCell
+        let cell :SongTableViewCell = tableView.dequeueReusableCellWithIdentifier("songCell") as! SongTableViewCell
+        print(playlist_data)
         playlist_data = playlist_data!["tracks"]
         var selected_track = playlist_data![indexPath.row]
         var duration = selected_track["durationMillis"].doubleValue

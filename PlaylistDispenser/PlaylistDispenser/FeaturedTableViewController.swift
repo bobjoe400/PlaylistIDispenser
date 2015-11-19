@@ -11,6 +11,7 @@ import Parse
 class FeaturedTableViewController: UITableViewController {
     
     var jsonData: JSON?
+    var featuredPlaylists = [JSON]()
     
     func downloadPlaylistInfo(){
         var urls = [String]()
@@ -28,8 +29,8 @@ class FeaturedTableViewController: UITableViewController {
                     let session = NSURLSession.sharedSession()
                     let download = session.dataTaskWithURL(url) {
                         (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
-                        self.jsonData = JSON(data: data!)
-                        print(self.jsonData!)
+                        self.jsonData! = JSON(data: data!)
+                        self.featuredPlaylists.append(self.jsonData!)
                     }
                     download.resume()
                 }
@@ -83,7 +84,7 @@ class FeaturedTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return featuredPlaylists.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{

@@ -64,10 +64,10 @@ class PlaylistTableViewController: UITableViewController {
     
     func stringFromTimeInterval(interval:NSTimeInterval) -> NSString {
         
-        var ti = NSInteger(interval)
+        let ti = NSInteger(interval)
         
-        var seconds = ti/1000 % 60
-        var minutes = ((ti/1000)/60) % 60
+        let seconds = ti/1000 % 60
+        let minutes = ((ti/1000)/60) % 60
         
         return NSString(format: "%0.2d:%0.2d",minutes,seconds)
     }

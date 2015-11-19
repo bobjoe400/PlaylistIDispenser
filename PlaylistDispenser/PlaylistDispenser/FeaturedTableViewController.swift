@@ -29,8 +29,7 @@ class FeaturedTableViewController: UITableViewController {
                     let download = session.dataTaskWithURL(url) {
                         (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
                         self.jsonData = JSON(data: data!)
-                        print(self.jsonData)
-                        
+                        print(self.jsonData!)
                     }
                     download.resume()
                 }

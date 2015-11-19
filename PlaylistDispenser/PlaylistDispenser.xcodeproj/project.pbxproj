@@ -149,8 +149,8 @@
 			isa = PBXGroup;
 			children = (
 				DFB6A0AE1BFD21FB0001FD6F /* PlaylistViewController.swift */,
-				DFB6A0B01BFD22100001FD6F /* PlaylistTableViewController.swift */,
 				DFB6A0B21BFD222B0001FD6F /* SongTableViewCell.swift */,
+				DFB6A0B01BFD22100001FD6F /* PlaylistTableViewController.swift */,
 			);
 			name = Playlist;
 			sourceTree = "<group>";

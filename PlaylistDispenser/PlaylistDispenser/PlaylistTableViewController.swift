@@ -10,6 +10,9 @@ import UIKit
 
 class PlaylistTableViewController: UITableViewController {
 
+    var playlist_data: JSON?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,10 +42,13 @@ class PlaylistTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell :SongTableViewCell = tableView.dequeueReusableCellWithIdentifier("sCell") as! SongTableViewCell
-        
-        cell.sTitle.text = "so sad"
-        cell.aTitle.text = "bob marley"
-        cell.sLength.text = "Ur mom"
+        playlist_data = playlist_data!["tracks"]
+        var selected_track = playlist_data![indexPath.row]
+        var duration = selected_track["durationMillis"].doubleValue
+        duration = duration * 100
+        cell.sTitle.text = selected_track["title"].stringValue
+        cell.aTitle.text = selected_track["albumArtist"].stringValue
+        cell.sLength.text = String(duration)
         
         return cell;
     }

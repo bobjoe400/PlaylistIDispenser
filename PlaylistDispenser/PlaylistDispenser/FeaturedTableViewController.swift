@@ -33,7 +33,7 @@ class FeaturedTableViewController: UITableViewController {
                         (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
                         self.jsonData! = JSON(data: data!)
                         self.featuredPlaylists.append(self.jsonData!)
-                        self.downloadImage()
+                        //self.downloadImage(self.jsonData!["tracks"][0]["track"]["albumArtRef"][0]["url"].stringValue)
                         self.tableView.reloadData()
                     }
                     download.resume()
@@ -58,7 +58,7 @@ class FeaturedTableViewController: UITableViewController {
         let url = NSURL(string: urls)
         let data = NSData(contentsOfURL: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
         //imageURL.image = UIImage(data: data!)
-        self.imgA.append(data)
+        self.imgA.append(UIImage(data: data!)!)
     }
     
     func downloadImage(){
@@ -140,12 +140,13 @@ class FeaturedTableViewController: UITableViewController {
         cell.pUpload.text  = selected_playlist["ownerName"].stringValue
         cell.pTitle.text = selected_playlist["name"].stringValue
         cell.numSons.text = String(selected_playlist["tracks"].count)
+        self.imgA.image = UIImage(named: "xjh15")
         //if cell.pImage.image == nil{
         //    cell.pImage.image = downloadImage(NSURL(string: selected_playlist["tracks"][0]["track"]["albumArtRef"][0]["url"].stringValue)!)
         //}
-        if self.imgA.count == self.featuredPlaylists.count{
-            cell.pImage.image = self.imgA[indexPath.row]
-        }
+        //if self.imgA.count == self.featuredPlaylists.count{
+            //cell.pImage.image = self.imgA[indexPath.row]
+        //}
         return cell;
     }
 

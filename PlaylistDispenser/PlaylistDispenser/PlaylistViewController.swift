@@ -27,10 +27,10 @@ class PlaylistViewController: UIViewController {
         if self.check != nil{
             if self.check == true{
                 addButton.setImage(UIImage(named: "Plus-512.png"), forState: UIControlState.Normal)
-                //self.check(false)
+                self.check = false
             }else{
                 addButton.setImage(UIImage(named: "Checked-512.png"), forState: UIControlState.Normal)
-                //self.check(true)
+                self.check = true
             }
         }
 
@@ -41,11 +41,11 @@ class PlaylistViewController: UIViewController {
         self.pImage.image = self.image!
         self.pTitle.text = self.pName!
         self.numSongs.text = self.num!
-        self.check == true
+        self.check = true
         //let newItem = NSEntityDescription.insertNewObjectForEntityForName("IsSaved", inManagedObjectContext: self.managedObjectContext) as! IsSaved
         //newItem.isit = false
         //check = newItem.isit as Bool
-        //print(checked)
+        //print(check)
     }
 
     override func didReceiveMemoryWarning() {

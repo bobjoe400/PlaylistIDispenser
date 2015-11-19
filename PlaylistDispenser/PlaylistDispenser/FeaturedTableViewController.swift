@@ -33,7 +33,15 @@ class FeaturedTableViewController: UITableViewController {
                         (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
                         self.jsonData! = JSON(data: data!)
                         self.featuredPlaylists.append(self.jsonData!)
-                        //self.downloadImage(self.jsonData!["tracks"][0]["track"]["albumArtRef"][0]["url"].stringValue)
+                        var usl = NSURL(string: "")
+                        var j = 0
+                        while usl == NSURL(string: ""){
+                            usl = NSURL(string: self.jsonData!["tracks"][j]["track"]["albumArtRef"][0]["url"].stringValue)!
+                            j++
+                        }
+                        let dato = NSData(contentsOfURL: usl!)!
+                        var image = UIImage(data: dato)
+                        self.imgA.append(image!)
                         self.tableView.reloadData()
                     }
                     download.resume()
@@ -140,7 +148,8 @@ class FeaturedTableViewController: UITableViewController {
         cell.pUpload.text  = selected_playlist["ownerName"].stringValue
         cell.pTitle.text = selected_playlist["name"].stringValue
         cell.numSons.text = String(selected_playlist["tracks"].count)
-        cell.pImage.image = UIImage(named: "xjh15")
+        //cell.pImage.image = UIImage(named: "xjh15")
+        cell.pImage.image = imgA[indexPath.row]
         //if cell.pImage.image == nil{
         //    cell.pImage.image = downloadImage(NSURL(string: selected_playlist["tracks"][0]["track"]["albumArtRef"][0]["url"].stringValue)!)
         //}
@@ -206,10 +215,9 @@ class FeaturedTableViewController: UITableViewController {
             let dest = segue.destinationViewController as! PlaylistViewController
             let data = featuredPlaylists[tableView.indexPathForSelectedRow!.row]
             dest.playlist_data = data
-            let imagez = UIImage(named: "xjh15")
             dest.pName = data["name"].stringValue
             dest.num = String(data["tracks"].count)
-            dest.image = imagez
+            dest.image = self.imgA[tableView.indexPathForSelectedRow!.row]
             dest.title = data["name"].stringValue
         }
     }

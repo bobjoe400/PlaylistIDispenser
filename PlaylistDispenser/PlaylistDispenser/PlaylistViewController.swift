@@ -41,7 +41,7 @@ class PlaylistViewController: UIViewController {
         self.pImage.image = self.image!
         self.pTitle.text = self.pName!
         self.numSongs.text = self.num!
-        self.check = true
+        self.check = false
         //let newItem = NSEntityDescription.insertNewObjectForEntityForName("IsSaved", inManagedObjectContext: self.managedObjectContext) as! IsSaved
         //newItem.isit = false
         //check = newItem.isit as Bool

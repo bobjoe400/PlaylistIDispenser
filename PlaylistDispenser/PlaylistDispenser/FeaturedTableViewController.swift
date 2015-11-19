@@ -40,7 +40,7 @@ class FeaturedTableViewController: UITableViewController {
                             j++
                         }
                         let dato = NSData(contentsOfURL: usl!)!
-                        var image = UIImage(data: dato)
+                        let image = UIImage(data: dato)
                         self.imgA.append(image!)
                         self.tableView.reloadData()
                     }

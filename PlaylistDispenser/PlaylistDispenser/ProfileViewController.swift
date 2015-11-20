@@ -33,7 +33,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        delay(0.125){
+        delay(0.5){
             let loginformVC = self.childViewControllers.last as! FeaturedTableViewController
             let playlist_data = loginformVC.featuredPlaylists[0] as JSON
             self.uName.text = playlist_data["ownerName"].stringValue

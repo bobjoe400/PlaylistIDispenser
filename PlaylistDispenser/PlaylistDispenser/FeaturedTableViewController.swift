@@ -18,6 +18,7 @@ class FeaturedTableViewController: UITableViewController {
         let featuredQuery = PFQuery(className: "featuredPlaylistsUrls")
         featuredQuery.findObjectsInBackgroundWithBlock{
             (objects: [PFObject]?, error: NSError?) -> Void in
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
             var urls = [String]()
             var jsonData: JSON?
             var imgB = [UIImage?]()
@@ -74,6 +75,7 @@ class FeaturedTableViewController: UITableViewController {
                                 self.imgA = imgC
                                 self.featuredPlaylists = feat
                                 self.tableView.reloadData()
+                                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                             }
                         }
                     }

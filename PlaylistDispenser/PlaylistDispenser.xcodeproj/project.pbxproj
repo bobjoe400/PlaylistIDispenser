@@ -23,6 +23,7 @@
 		DF5BDE691BFD906900239038 /* LocalData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF5BDE671BFD906900239038 /* LocalData.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
 		DF5BDE6C1BFD96C100239038 /* IsSaved+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5BDE6A1BFD96C100239038 /* IsSaved+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
 		DF5BDE6D1BFD96C100239038 /* IsSaved.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5BDE6B1BFD96C100239038 /* IsSaved.swift */; settings = {ASSET_TAGS = (); }; };
+		DFB16B0B1BFE99C30004AB04 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB16B0A1BFE99C30004AB04 /* SignUpViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DFB6A09F1BFD213B0001FD6F /* 0.txt in Resources */ = {isa = PBXBuildFile; fileRef = DFB6A09A1BFD213B0001FD6F /* 0.txt */; };
 		DFB6A0A01BFD213B0001FD6F /* 9.txt in Resources */ = {isa = PBXBuildFile; fileRef = DFB6A09B1BFD213B0001FD6F /* 9.txt */; };
 		DFB6A0A11BFD213B0001FD6F /* 13.txt in Resources */ = {isa = PBXBuildFile; fileRef = DFB6A09C1BFD213B0001FD6F /* 13.txt */; };
@@ -80,6 +81,7 @@
 		DF5BDE681BFD906900239038 /* LocalData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalData.xcdatamodel; sourceTree = "<group>"; };
 		DF5BDE6A1BFD96C100239038 /* IsSaved+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IsSaved+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DF5BDE6B1BFD96C100239038 /* IsSaved.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsSaved.swift; sourceTree = "<group>"; };
+		DFB16B0A1BFE99C30004AB04 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		DFB6A09A1BFD213B0001FD6F /* 0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 0.txt; path = PlaylistDispenser/0.txt; sourceTree = "<group>"; };
 		DFB6A09B1BFD213B0001FD6F /* 9.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 9.txt; path = PlaylistDispenser/9.txt; sourceTree = "<group>"; };
 		DFB6A09C1BFD213B0001FD6F /* 13.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 13.txt; path = PlaylistDispenser/13.txt; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				DFD728621BFE80F800472F20 /* LoginViewController.swift */,
+				DFB16B0A1BFE99C30004AB04 /* SignUpViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 				DFB6A0A91BFD21BF0001FD6F /* ProfileTableViewController.swift in Sources */,
 				DFB6A0AB1BFD21EB0001FD6F /* IEViewController.swift in Sources */,
 				DFB6A0A51BFD21990001FD6F /* FeaturedTableViewController.swift in Sources */,
+				DFB16B0B1BFE99C30004AB04 /* SignUpViewController.swift in Sources */,
 				DF5BDE691BFD906900239038 /* LocalData.xcdatamodeld in Sources */,
 				DFB6A0B31BFD222B0001FD6F /* SongTableViewCell.swift in Sources */,
 				DFF8C7221BFBE44F00FDFDA4 /* AppDelegate.swift in Sources */,

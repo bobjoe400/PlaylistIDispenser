@@ -33,7 +33,7 @@ class LoginViewController: UIViewController {
             for object in objects! {
                 let correctUserName:String = object["username"] as! String
                 let correctPassword:String = object["password"] as! String
-                if correctUserName == self.username {
+                if correctUserName.lowercaseString == self.username.lowercaseString {
                     self.found = true
                     if correctPassword == self.password {
                         self.isCorrectPassword = true

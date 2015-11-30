@@ -7,46 +7,63 @@
 //
 
 import UIKit
+import Parse
 
 class ProfileViewController: UIViewController {
 
     var Uname: String?
-    var city: String?
     var image: UIImage?
     var playlist_data: JSON?
+    var hasgPlay: Bool?
     
+    @IBOutlet weak var gButton: UIButton!
     @IBOutlet weak var uName: UILabel!
-    @IBOutlet weak var uCity: UILabel!
     @IBOutlet weak var uImage: UIImageView!
     @IBAction func setButt(sender: AnyObject){
         
     }
     
-    func delay(delay:Double, closure:()->()) {
-        dispatch_after(
-            dispatch_time(
-                DISPATCH_TIME_NOW,
-                Int64(delay * Double(NSEC_PER_SEC))
-            ),
-            dispatch_get_main_queue(), closure)
-    }
+//    func delay(delay:Double, closure:()->()) {
+//        dispatch_after(
+//            dispatch_time(
+//                DISPATCH_TIME_NOW,
+//                Int64(delay * Double(NSEC_PER_SEC))
+//            ),
+//            dispatch_get_main_queue(), closure)
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        delay(0.5){
-            let loginformVC = self.childViewControllers.last as! FeaturedTableViewController
-            let playlist_data = loginformVC.featuredPlaylists[0] as JSON
-            self.uName.text = playlist_data["ownerName"].stringValue
-            self.uCity.text = "San Luis Obisbo, CA"
-            var usl = NSURL(string: "")
-            var j = 0
-            while usl == NSURL(string: ""){
-                usl = NSURL(string: playlist_data["tracks"][j]["track"]["albumArtRef"][0]["url"].stringValue)!
-                j++
+        let uInfo = PFQuery(className: "users")
+        uInfo.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            let object = objects![0]
+            self.hasgPlay = object["gplay"] as? Bool
+            if self.hasgPlay == true{
+                self.gButton.hidden = true
             }
-            let dato = NSData(contentsOfURL: usl!)!
-            self.uImage.image = UIImage(data: dato)
+            self.uName.text = object["username"] as? String
+            
+            //            let bool = objects![0]["gplay"] as! Bool
+//            print(bool)
+//            if bool {
+//                self.gButton.hidden = true
+//            }
         }
+//        delay(0.5){
+//            let loginformVC = self.childViewControllers.last as! FeaturedTableViewController
+//            let playlist_data = loginformVC.featuredPlaylists[0] as JSON
+//            self.uName.text = playlist_data["ownerName"].stringValue
+//            self.uCity.text = "San Luis Obisbo, CA"
+//            var usl = NSURL(string: "")
+//            var j = 0
+//            while usl == NSURL(string: ""){
+//                usl = NSURL(string: playlist_data["tracks"][j]["track"]["albumArtRef"][0]["url"].stringValue)!
+//                j++
+//            }
+//            let dato = NSData(contentsOfURL: usl!)!
+//            self.uImage.image = UIImage(data: dato)
+//        }
         // Do any additional setup after loading the view.
     }
 

@@ -43,6 +43,7 @@ class SignUpViewController: UIViewController {
             signUpData["username"] = username
             signUpData["password"] = password
             signUpData["email"] = email
+            signUpData["gplay"] = false
             signUpData.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
                 print(signUpData)
             }

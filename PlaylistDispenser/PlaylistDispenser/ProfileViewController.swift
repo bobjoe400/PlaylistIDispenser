@@ -22,6 +22,9 @@ class ProfileViewController: UIViewController {
     @IBAction func setButt(sender: AnyObject){
         
     }
+    @IBAction func prepareForUnwind(segue:UIStoryboardSegue){
+        
+    }
     
 //    func delay(delay:Double, closure:()->()) {
 //        dispatch_after(
@@ -39,17 +42,17 @@ class ProfileViewController: UIViewController {
             (objects: [PFObject]?, error: NSError?) -> Void in
             let object = objects![0]
             self.hasgPlay = object["gplay"] as? Bool
-            if self.hasgPlay == true{
+            if self.hasgPlay == false{
                 self.gButton.hidden = true
             }
             self.uName.text = object["username"] as? String
-            
             //            let bool = objects![0]["gplay"] as! Bool
 //            print(bool)
 //            if bool {
 //                self.gButton.hidden = true
 //            }
         }
+        //print(playlist_data)
 //        delay(0.5){
 //            let loginformVC = self.childViewControllers.last as! FeaturedTableViewController
 //            let playlist_data = loginformVC.featuredPlaylists[0] as JSON
@@ -77,14 +80,18 @@ class ProfileViewController: UIViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    /*override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         //if "embedSegue" == segue.identifier{
           //  let detailScene = segue.destinationViewController as! FeaturedTableViewController
             //detailScene.playlist_data = self.playlist_data
         //}
-    }*/
+        if "importFromGPlay" == segue.identifier{
+            let vc = segue.destinationViewController as! ImportFromGPlayTableViewController
+            vc.playlists = playlist_data
+        }
+    }
 
 
 }

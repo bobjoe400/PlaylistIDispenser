@@ -13,11 +13,9 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    var username = ""
-    var password = ""
+    var userData: String?
     var found = false
     var isCorrectPassword = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,31 +23,30 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func loginButtonClicked(sender: AnyObject) {
-        username = usernameTextField.text!
-        password = passwordTextField.text!
+        let username = usernameTextField.text!
+        let password = passwordTextField.text!
+        
+        
         let loginQuery = PFQuery(className: "users")
         loginQuery.findObjectsInBackgroundWithBlock{
             (objects:[PFObject]?, error: NSError?) -> Void in
             for object in objects! {
-                let correctUserName:String = object["username"] as! String
-                let correctPassword:String = object["password"] as! String
-                if correctUserName.lowercaseString == self.username.lowercaseString {
-                    self.found = true
-                    if correctPassword == self.password {
-                        self.isCorrectPassword = true
-                        print(self.found)
-                        print(self.isCorrectPassword)
-                        self.performSegueWithIdentifier("swag", sender: nil)
+                let foundUserName = String(object["username"])
+                let foundPassword = String(object["password"])
+                if foundUserName.lowercaseString == username.lowercaseString {
+                    if foundPassword == password  {
+                        self.userData = foundUserName
+                        self.performSegueWithIdentifier("downloadData", sender: self)
                     }
+                }else{
+                    let alert = UIAlertView()
+                    alert.title = "Error"
+                    alert.message = "Wrong username or password"
+                    alert.addButtonWithTitle("Try again")
+                    alert.show()
                 }
             }
-            if !self.found || !self.isCorrectPassword {
-                let alert = UIAlertView()
-                alert.title = "Error"
-                alert.message = "Wrong username or password"
-                alert.addButtonWithTitle("Try again")
-                alert.show()
-            }
+
         }
     }
     
@@ -63,11 +60,16 @@ class LoginViewController: UIViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    /*override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "downloadData"{
+            let dest = segue.destinationViewController as! DownloadDataViewController
+            dest.username = self.userData
+            
+        }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
 
-    }*/
+    }
     
 
 }

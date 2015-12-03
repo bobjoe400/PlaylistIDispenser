@@ -2,19 +2,18 @@
 //  ImportFromGPlayTableViewController.swift
 //  PlaylistDispenser
 //
-//  Created by Student 2 on 12/1/15.
+//  Created by Student 2 on 12/2/15.
 //  Copyright © 2015 Student 2. All rights reserved.
 //
 
 import UIKit
 
 class ImportFromGPlayTableViewController: UITableViewController {
-
+    
     var playlists: JSON?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -31,23 +30,25 @@ class ImportFromGPlayTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return playlists!.arrayValue.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
         // Configure the cell...
-
-        return cell
+        let cell:basicInfoTableViewCell = tableView.dequeueReusableCellWithIdentifier("basicInfo", forIndexPath: indexPath) as! basicInfoTableViewCell
+        let selected_playlist = self.playlists![indexPath.row]
+        cell.pTitle.text = selected_playlist["name"].stringValue
+        cell.numSons.text = String(selected_playlist["tracks"].count)
+        //cell.pImage.image =
+        return cell;
     }
-    */
+
 
     /*
     // Override to support conditional editing of the table view.

@@ -12,14 +12,15 @@ import Parse
 class DownloadDataViewController: UIViewController {
     var username: String?
     var gplayData: JSON?
-    var userObj: PFObject?
+    var userObject: PFObject?
+    var ip: String?
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var indicatorLabel: UILabel!
-    let ip = "129.65.92.72"
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         activityIndicator.startAnimating()
         let loginQuery = PFQuery(className: "users")
         loginQuery.findObjectsInBackgroundWithBlock{
@@ -29,16 +30,24 @@ class DownloadDataViewController: UIViewController {
                 if String(object["username"]) == self.username!{
                     if object["gplay"] as! Bool == true{
                         self.indicatorLabel.text = "Downloading Google Play Library Data..."
-                        let url = NSURL(string: "http://" + self.ip + "/cgi-bin/download_playlists.py?email=" + String(object["email"]) + "&password=" + String(object["gplayPass"]))
+                        let url = NSURL(string: "http://" + self.ip! + "/cgi-bin/download_playlists.py?email=" + String(object["email"]) + "&password=" + String(object["gplayPass"]))
                         print(url!)
                         let session = NSURLSession.sharedSession()
                         let download = session.dataTaskWithURL(url!) {
                             (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
                             self.gplayData = JSON(data: data!)
-                            self.userObj = object
+                            self.userObject = object
                             self.performSegueWithIdentifier("moveToApp", sender: nil)
                         }
-                       download.resume()
+                        do{
+                            try download.resume()
+                        }catch{
+                            print(error)
+                            let alert = UIAlertView()
+                            alert.title = "FUCKING TITS"
+                            alert.alertViewStyle = UIAlertViewStyle.PlainTextInput
+                            self.ip = alert.textFieldAtIndex(0)!.text
+                        }
                     }
                 }
             }
@@ -49,6 +58,7 @@ class DownloadDataViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+
         // Dispose of any resources that can be recreated.
     }
     
@@ -64,7 +74,7 @@ class DownloadDataViewController: UIViewController {
             let TBC = segue.destinationViewController as! UITabBarController
             let navi = TBC.viewControllers![2] as! UINavigationController
             let profile = navi.viewControllers[0] as! ProfileViewController
-            profile.Uname = username
+            profile.userObject = self.userObject
             profile.playlist_data = gplayData
         }
     }

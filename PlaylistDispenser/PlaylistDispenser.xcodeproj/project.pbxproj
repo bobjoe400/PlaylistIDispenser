@@ -20,8 +20,8 @@
 		A334E1261BFD2C1B00C20B7C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A334E1251BFD2C1B00C20B7C /* libz.tbd */; };
 		A334E1281BFD2EB100C20B7C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334E1271BFD2EB100C20B7C /* SwiftyJSON.swift */; };
 		DF1B492C1C0E59B5001DC1CC /* DownloadDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1B492B1C0E59B5001DC1CC /* DownloadDataViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		DF1B49301C0E795F001DC1CC /* ImportFromGPlayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1B492F1C0E795F001DC1CC /* ImportFromGPlayTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DF2DF8201BFE8ECA001C43C1 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF2DF81F1BFE8ECA001C43C1 /* Parse.framework */; settings = {ASSET_TAGS = (); }; };
+		DF3D93181C0FE5A2001307D6 /* ImportFromGPlayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3D93171C0FE5A2001307D6 /* ImportFromGPlayTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DF5BDE691BFD906900239038 /* LocalData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF5BDE671BFD906900239038 /* LocalData.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
 		DF5BDE6C1BFD96C100239038 /* IsSaved+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5BDE6A1BFD96C100239038 /* IsSaved+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
 		DF5BDE6D1BFD96C100239038 /* IsSaved.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5BDE6B1BFD96C100239038 /* IsSaved.swift */; settings = {ASSET_TAGS = (); }; };
@@ -79,8 +79,8 @@
 		A334E1251BFD2C1B00C20B7C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		A334E1271BFD2EB100C20B7C /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = ../SwiftyJSON.swift; sourceTree = "<group>"; };
 		DF1B492B1C0E59B5001DC1CC /* DownloadDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadDataViewController.swift; sourceTree = "<group>"; };
-		DF1B492F1C0E795F001DC1CC /* ImportFromGPlayTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImportFromGPlayTableViewController.swift; path = ../ImportFromGPlayTableViewController.swift; sourceTree = "<group>"; };
 		DF2DF81F1BFE8ECA001C43C1 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		DF3D93171C0FE5A2001307D6 /* ImportFromGPlayTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImportFromGPlayTableViewController.swift; path = ../ImportFromGPlayTableViewController.swift; sourceTree = "<group>"; };
 		DF5BDE681BFD906900239038 /* LocalData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalData.xcdatamodel; sourceTree = "<group>"; };
 		DF5BDE6A1BFD96C100239038 /* IsSaved+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IsSaved+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DF5BDE6B1BFD96C100239038 /* IsSaved.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsSaved.swift; sourceTree = "<group>"; };
@@ -165,7 +165,7 @@
 			children = (
 				DFB6A0AC1BFD21F50001FD6F /* ProfileViewController.swift */,
 				DFB6A0A81BFD21BF0001FD6F /* ProfileTableViewController.swift */,
-				DF1B492F1C0E795F001DC1CC /* ImportFromGPlayTableViewController.swift */,
+				DF3D93171C0FE5A2001307D6 /* ImportFromGPlayTableViewController.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -422,7 +422,7 @@
 				DF5BDE6C1BFD96C100239038 /* IsSaved+CoreDataProperties.swift in Sources */,
 				DFB6A0AF1BFD21FB0001FD6F /* PlaylistViewController.swift in Sources */,
 				A334E1281BFD2EB100C20B7C /* SwiftyJSON.swift in Sources */,
-				DF1B49301C0E795F001DC1CC /* ImportFromGPlayTableViewController.swift in Sources */,
+				DF3D93181C0FE5A2001307D6 /* ImportFromGPlayTableViewController.swift in Sources */,
 				DFB6A0A91BFD21BF0001FD6F /* ProfileTableViewController.swift in Sources */,
 				DFB6A0AB1BFD21EB0001FD6F /* IEViewController.swift in Sources */,
 				DF1B492C1C0E59B5001DC1CC /* DownloadDataViewController.swift in Sources */,

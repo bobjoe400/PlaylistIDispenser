@@ -15,6 +15,8 @@ class ProfileViewController: UIViewController {
     var image: UIImage?
     var playlist_data: JSON?
     var hasgPlay: Bool?
+    var userObject: PFObject?
+    
     
     @IBOutlet weak var gButton: UIButton!
     @IBOutlet weak var uName: UILabel!
@@ -37,21 +39,18 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let uInfo = PFQuery(className: "users")
-        uInfo.findObjectsInBackgroundWithBlock {
-            (objects: [PFObject]?, error: NSError?) -> Void in
-            let object = objects![0]
-            self.hasgPlay = object["gplay"] as? Bool
-            if self.hasgPlay == false{
-                self.gButton.hidden = true
+        print(userObject)
+        self.uName.text = String(userObject!["username"])
+        let userImageFile = userObject!["profilePicture"] as! PFFile
+        userImageFile.getDataInBackgroundWithBlock{
+            (imageData: NSData?, error: NSError?) -> Void in
+            if error == nil{
+                if let imageData = imageData{
+                    self.uImage.image = UIImage(data: imageData)
+                }
             }
-            self.uName.text = object["username"] as? String
-            //            let bool = objects![0]["gplay"] as! Bool
-//            print(bool)
-//            if bool {
-//                self.gButton.hidden = true
-//            }
         }
+        
         //print(playlist_data)
 //        delay(0.5){
 //            let loginformVC = self.childViewControllers.last as! FeaturedTableViewController

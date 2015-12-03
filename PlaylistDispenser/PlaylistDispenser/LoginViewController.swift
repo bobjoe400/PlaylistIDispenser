@@ -9,20 +9,20 @@
 import UIKit
 import Parse
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     var userData: String?
     var found = false
     var isCorrectPassword = false
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
+    var userObject: PFObject?
 
     @IBAction func loginButtonClicked(sender: AnyObject) {
+        loginCheck()
+    }
+    
+    func loginCheck(){
         let username = usernameTextField.text!
         let password = passwordTextField.text!
         
@@ -36,18 +36,38 @@ class LoginViewController: UIViewController {
                 if foundUserName.lowercaseString == username.lowercaseString {
                     if foundPassword == password  {
                         self.userData = foundUserName
+                        self.userObject = object
                         self.performSegueWithIdentifier("downloadData", sender: self)
                     }
-                }else{
-                    let alert = UIAlertView()
-                    alert.title = "Error"
-                    alert.message = "Wrong username or password"
-                    alert.addButtonWithTitle("Try again")
-                    alert.show()
+                    else{
+                        let alert = UIAlertView()
+                        alert.title = "Error"
+                        alert.message = "Wrong username or password"
+                        alert.addButtonWithTitle("Try again")
+                        alert.show()
+                        self.usernameTextField.becomeFirstResponder()
+                    }
                 }
             }
-
         }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == self.usernameTextField{
+            self.passwordTextField.becomeFirstResponder()
+        }else if textField == self.passwordTextField{
+            textField.resignFirstResponder()
+            loginCheck()
+        }
+        return true
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        usernameTextField.delegate = self
+        passwordTextField.delegate = self
+        passwordTextField.clearsOnBeginEditing = true
+        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
@@ -55,7 +75,10 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     
     // MARK: - Navigation
 
@@ -64,7 +87,8 @@ class LoginViewController: UIViewController {
         if segue.identifier == "downloadData"{
             let dest = segue.destinationViewController as! DownloadDataViewController
             dest.username = self.userData
-            
+            dest.userObject = self.userObject
+            dest.ip = "129.65.92.142"
         }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.

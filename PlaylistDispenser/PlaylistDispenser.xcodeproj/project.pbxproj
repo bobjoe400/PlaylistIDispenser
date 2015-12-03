@@ -23,7 +23,7 @@
 		DF2DF8201BFE8ECA001C43C1 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF2DF81F1BFE8ECA001C43C1 /* Parse.framework */; settings = {ASSET_TAGS = (); }; };
 		DF3D93181C0FE5A2001307D6 /* ImportFromGPlayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3D93171C0FE5A2001307D6 /* ImportFromGPlayTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DF5312EF1C11027B005B2259 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5312EE1C11027B005B2259 /* SearchTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		DF5312F11C11099C005B2259 /* ImportingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5312F01C11099C005B2259 /* ImportingTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		DF5312F31C110C3C005B2259 /* importingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5312F21C110C3C005B2259 /* importingViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DF5BDE691BFD906900239038 /* LocalData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF5BDE671BFD906900239038 /* LocalData.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
 		DF5BDE6C1BFD96C100239038 /* IsSaved+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5BDE6A1BFD96C100239038 /* IsSaved+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
 		DF5BDE6D1BFD96C100239038 /* IsSaved.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5BDE6B1BFD96C100239038 /* IsSaved.swift */; settings = {ASSET_TAGS = (); }; };
@@ -83,7 +83,7 @@
 		DF2DF81F1BFE8ECA001C43C1 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		DF3D93171C0FE5A2001307D6 /* ImportFromGPlayTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImportFromGPlayTableViewController.swift; path = ../ImportFromGPlayTableViewController.swift; sourceTree = "<group>"; };
 		DF5312EE1C11027B005B2259 /* SearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
-		DF5312F01C11099C005B2259 /* ImportingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportingTableViewController.swift; sourceTree = "<group>"; };
+		DF5312F21C110C3C005B2259 /* importingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = importingViewController.swift; path = ../importingViewController.swift; sourceTree = "<group>"; };
 		DF5BDE681BFD906900239038 /* LocalData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalData.xcdatamodel; sourceTree = "<group>"; };
 		DF5BDE6A1BFD96C100239038 /* IsSaved+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IsSaved+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DF5BDE6B1BFD96C100239038 /* IsSaved.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsSaved.swift; sourceTree = "<group>"; };
@@ -168,7 +168,7 @@
 				DFB6A0AC1BFD21F50001FD6F /* ProfileViewController.swift */,
 				DFB6A0A81BFD21BF0001FD6F /* ProfileTableViewController.swift */,
 				DF3D93171C0FE5A2001307D6 /* ImportFromGPlayTableViewController.swift */,
-				DF5312F01C11099C005B2259 /* ImportingTableViewController.swift */,
+				DF5312F21C110C3C005B2259 /* importingViewController.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -430,12 +430,12 @@
 				DF1B492C1C0E59B5001DC1CC /* DownloadDataViewController.swift in Sources */,
 				DFB6A0A51BFD21990001FD6F /* FeaturedTableViewController.swift in Sources */,
 				DFB16B0B1BFE99C30004AB04 /* SignUpViewController.swift in Sources */,
-				DF5312F11C11099C005B2259 /* ImportingTableViewController.swift in Sources */,
 				DF5BDE691BFD906900239038 /* LocalData.xcdatamodeld in Sources */,
 				DFB6A0B31BFD222B0001FD6F /* SongTableViewCell.swift in Sources */,
 				DFF8C7221BFBE44F00FDFDA4 /* AppDelegate.swift in Sources */,
 				DF5312EF1C11027B005B2259 /* SearchTableViewController.swift in Sources */,
 				DFB6A0B11BFD22100001FD6F /* PlaylistTableViewController.swift in Sources */,
+				DF5312F31C110C3C005B2259 /* importingViewController.swift in Sources */,
 				DF5BDE6D1BFD96C100239038 /* IsSaved.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

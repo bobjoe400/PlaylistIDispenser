@@ -23,6 +23,8 @@ class DownloadDataViewController: UIViewController {
 
         activityIndicator.startAnimating()
         let loginQuery = PFQuery(className: "users")
+        let ip = self.ip!
+        print(ip)
         loginQuery.findObjectsInBackgroundWithBlock{
             (objects:[PFObject]?, error: NSError?) -> Void in
             print("Got here")
@@ -30,7 +32,7 @@ class DownloadDataViewController: UIViewController {
                 if String(object["username"]) == self.username!{
                     if object["gplay"] as! Bool == true{
                         self.indicatorLabel.text = "Downloading Google Play Library Data..."
-                        let url = NSURL(string: "http://" + self.ip! + "/cgi-bin/download_playlists.py?email=" + String(object["email"]) + "&password=" + String(object["gplayPass"]))
+                        let url = NSURL(string: "http://" + ip + "/cgi-bin/download_playlists.py?email=" + String(object["email"]) + "&password=" + String(object["gplayPass"]))
                         print(url!)
                         let session = NSURLSession.sharedSession()
                         let download = session.dataTaskWithURL(url!) {
@@ -39,15 +41,7 @@ class DownloadDataViewController: UIViewController {
                             self.userObject = object
                             self.performSegueWithIdentifier("moveToApp", sender: nil)
                         }
-                        do{
-                            try download.resume()
-                        }catch{
-                            print(error)
-                            let alert = UIAlertView()
-                            alert.title = "FUCKING TITS"
-                            alert.alertViewStyle = UIAlertViewStyle.PlainTextInput
-                            self.ip = alert.textFieldAtIndex(0)!.text
-                        }
+                        download.resume()
                     }
                 }
             }

@@ -86,6 +86,9 @@ class ProfileViewController: UIViewController {
           //  let detailScene = segue.destinationViewController as! FeaturedTableViewController
             //detailScene.playlist_data = self.playlist_data
         //}
+        if "embedSegue" == segue.identifier{
+            
+        }
         if "importFromGPlay" == segue.identifier{
             let vc = segue.destinationViewController as! ImportFromGPlayTableViewController
             vc.playlists = playlist_data

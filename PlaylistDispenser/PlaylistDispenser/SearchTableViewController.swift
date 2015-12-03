@@ -1,19 +1,18 @@
 //
-//  ImportFromGPlayTableViewController.swift
+//  SearchTableViewController.swift
 //  PlaylistDispenser
 //
-//  Created by Student 2 on 12/2/15.
+//  Created by Student 2 on 12/3/15.
 //  Copyright © 2015 Student 2. All rights reserved.
 //
 
 import UIKit
 
-class ImportFromGPlayTableViewController: UITableViewController {
-    
-    var playlists: JSON?
-    
+class SearchTableViewController: UITableViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -30,25 +29,23 @@ class ImportFromGPlayTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 0
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return playlists!.arrayValue.count
+        return 0
     }
 
-    
+    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        // Configure the cell...
-        let cell:basicInfoTableViewCell = tableView.dequeueReusableCellWithIdentifier("basicInfo", forIndexPath: indexPath) as! basicInfoTableViewCell
-        let selected_playlist = self.playlists![indexPath.row]
-        cell.pTitle.text = selected_playlist["name"].stringValue
-        cell.numSons.text = String(selected_playlist["tracks"].count)
-        //cell.pImage.image =
-        return cell;
-    }
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
 
+        // Configure the cell...
+
+        return cell
+    }
+    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -85,17 +82,14 @@ class ImportFromGPlayTableViewController: UITableViewController {
     }
     */
 
-    
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "importing"{
-            
-        }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-
+    */
 
 }

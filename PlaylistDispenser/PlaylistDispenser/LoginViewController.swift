@@ -11,6 +11,7 @@ import Parse
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var ipTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     var userData: String?
@@ -25,7 +26,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func loginCheck(){
         let username = usernameTextField.text!
         let password = passwordTextField.text!
-        
         
         let loginQuery = PFQuery(className: "users")
         loginQuery.findObjectsInBackgroundWithBlock{
@@ -56,7 +56,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if textField == self.usernameTextField{
             self.passwordTextField.becomeFirstResponder()
         }else if textField == self.passwordTextField{
-            textField.resignFirstResponder()
+            self.ipTextField.becomeFirstResponder()
+        }else if textField == self.ipTextField{
+            self.resignFirstResponder()
             loginCheck()
         }
         return true
@@ -88,7 +90,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             let dest = segue.destinationViewController as! DownloadDataViewController
             dest.username = self.userData
             dest.userObject = self.userObject
-            dest.ip = "129.65.92.142"
+            dest.ip = self.ipTextField!.text
         }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.

@@ -70,6 +70,9 @@ class DownloadDataViewController: UIViewController {
             let profile = navi.viewControllers[0] as! ProfileViewController
             profile.userObject = self.userObject
             profile.playlist_data = gplayData
+//            TBC.tabBar.items![0].image = UIImage(named: "News-512")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+//            TBC.tabBar.items![1].image = UIImage(named: "Share-512 copy")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+//            TBC.tabBar.items![2].image = UIImage(named: "User Male-512 copy 4")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         }
     }
 

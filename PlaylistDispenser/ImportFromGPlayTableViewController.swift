@@ -7,11 +7,11 @@
 //
 
 import UIKit
-
+import Parse
 class ImportFromGPlayTableViewController: UITableViewController {
     
     var playlists: JSON?
-    
+    var user: PFObject?
     override func viewDidLoad() {
         super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
@@ -91,7 +91,11 @@ class ImportFromGPlayTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "importing"{
-            
+            let dest = segue.destinationViewController as! importingViewController
+            dest.playlists = self.playlists
+            dest.playlist = self.playlists![tableView.indexPathForSelectedRow!.row]
+            dest.user = self.user
+
         }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.

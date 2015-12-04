@@ -92,6 +92,7 @@ class ProfileViewController: UIViewController {
         if "importFromGPlay" == segue.identifier{
             let vc = segue.destinationViewController as! ImportFromGPlayTableViewController
             vc.playlists = playlist_data
+            vc.user = self.userObject
         }
     }
 

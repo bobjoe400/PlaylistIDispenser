@@ -24,7 +24,6 @@
 		DF3D93181C0FE5A2001307D6 /* ImportFromGPlayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3D93171C0FE5A2001307D6 /* ImportFromGPlayTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DF5312F11C11099C005B2259 /* ImportingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5312F01C11099C005B2259 /* ImportingTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DF5312F51C114164005B2259 /* importingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5312F41C114164005B2259 /* importingViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		DF5312FA1C11486C005B2259 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF5312FC1C11486C005B2259 /* Main.storyboard */; };
 		DF5747F31C119636005BA66C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5747F21C119636005BA66C /* SettingsViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DF5BDE691BFD906900239038 /* LocalData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF5BDE671BFD906900239038 /* LocalData.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
 		DF5BDE6C1BFD96C100239038 /* IsSaved+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5BDE6A1BFD96C100239038 /* IsSaved+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
@@ -88,7 +87,6 @@
 		DF3D93171C0FE5A2001307D6 /* ImportFromGPlayTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImportFromGPlayTableViewController.swift; path = ../ImportFromGPlayTableViewController.swift; sourceTree = "<group>"; };
 		DF5312F01C11099C005B2259 /* ImportingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportingTableViewController.swift; sourceTree = "<group>"; };
 		DF5312F41C114164005B2259 /* importingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = importingViewController.swift; sourceTree = "<group>"; };
-		DF5312FB1C11486C005B2259 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DF5747F21C119636005BA66C /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		DF5BDE681BFD906900239038 /* LocalData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalData.xcdatamodel; sourceTree = "<group>"; };
 		DF5BDE6A1BFD96C100239038 /* IsSaved+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IsSaved+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -266,7 +264,6 @@
 				DFF8C72F1BFBE44F00FDFDA4 /* Info.plist */,
 				DFF8C72A1BFBE44F00FDFDA4 /* Assets.xcassets */,
 				DF6C68811C110A5B00314A58 /* Main.storyboard */,
-				DF5312FC1C11486C005B2259 /* Main.storyboard */,
 				DFF8C72C1BFBE44F00FDFDA4 /* LaunchScreen.storyboard */,
 				DF5BDE6E1BFD9A0F00239038 /* Core Data */,
 				DFD728611BFE80D300472F20 /* Login */,
@@ -405,7 +402,6 @@
 				DFB6A0A21BFD213B0001FD6F /* 20.txt in Resources */,
 				DFB6A0A11BFD213B0001FD6F /* 13.txt in Resources */,
 				DF6C687F1C110A5B00314A58 /* Main.storyboard in Resources */,
-				DF5312FA1C11486C005B2259 /* Main.storyboard in Resources */,
 				DFB6A09F1BFD213B0001FD6F /* 0.txt in Resources */,
 				DFB6A0A31BFD213B0001FD6F /* 21.txt in Resources */,
 			);
@@ -488,14 +484,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		DF5312FC1C11486C005B2259 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DF5312FB1C11486C005B2259 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		DF6C68811C110A5B00314A58 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -100,11 +100,8 @@ class ProfileViewController: UIViewController {
         }
         
         if (segue.identifier == "profileSettingsSegue") {
-            if let destinationVC = segue.destinationViewController as? SettingsViewController {
-                if self.uName != nil {
-                    destinationVC.currentUser = self.uName!.text
-                }
-            }
+            let vc = segue.destinationViewController as! SettingsViewController
+            vc.userData = self.userObject!
         }
     }
 

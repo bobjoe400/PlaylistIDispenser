@@ -14,7 +14,7 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    var currentUser: String?
+    var userData: PFObject?
     
     @IBAction func saveButtonClicked(sender: AnyObject) {
         let username = usernameTextField.text
@@ -26,38 +26,40 @@ class SettingsViewController: UITableViewController {
             alert.addButtonWithTitle("OK")
             alert.show()
         } else {
-            let query = PFQuery(className: "users")
-            query.whereKey("username", equalTo: currentUser!)
-            query.findObjectsInBackgroundWithBlock {
-                (results, error) -> Void in
-                if results!.count == 1 {
-                    for obj in results! {
-                        obj["gplay"] = true
-                        obj["gplayPass"] = password
-                        obj["email"] = username
-                        obj.saveInBackground()
-                    }
-                }
-            }
+            //let query = PFQuery(className: "users")
+            //query.whereKey("username", equalTo: currentUser!)
+            //query.findObjectsInBackgroundWithBlock {
+                //(results, error) -> Void in
+                //if results!.count == 1 {
+                    //for obj in results! {
+            let obj = userData!
+            obj["gplay"] = true
+            obj["gplayPass"] = password
+            obj["email"] = username
+            obj.saveInBackground()
+                    //}
+                //}
+            //}
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let query = PFQuery(className: "users")
-        query.whereKey("username", equalTo: currentUser!)
-        query.findObjectsInBackgroundWithBlock {
-            (results, error) -> Void in
-            if results!.count == 1 {
-                for obj in results! {
-                    if obj["gplay"].intValue == 1 {
+        //let query = PFQuery(className: "users")
+        //query.whereKey("username", equalTo: currentUser!)
+        //query.findObjectsInBackgroundWithBlock {
+            //(results, error) -> Void in
+            //if results!.count == 1 {
+                //for obj in results! {
+                    //if obj["gplay"].intValue == 1 {
+                        let obj = userData!
                         print(self.usernameTextField.text = String(obj["email"]))
                         self.usernameTextField.text = String(obj["email"])
                         self.passwordTextField.text = String(obj["gplayPass"])
-                    }
-                }
-            }
-        }
+                    //}
+                //}
+            //}
+        //}
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -66,10 +68,10 @@ class SettingsViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    //override func didReceiveMemoryWarning() {
+        //super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
+    //}
     
 
     /*

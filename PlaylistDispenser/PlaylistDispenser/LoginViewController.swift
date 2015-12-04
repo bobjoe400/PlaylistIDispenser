@@ -56,7 +56,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func wrongAlert(check: Bool){
         if check {
-            print("dixdixdixdix")
             let alert = UIAlertView()
             alert.title = "Error"
             alert.message = "Wrong username or password or IP field is empty"

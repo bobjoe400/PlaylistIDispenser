@@ -40,8 +40,8 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(self.childViewControllers)
-        print(userObject)
+        //print(self.childViewControllers)
+        //print(userObject)
         self.uName.text = String(userObject!["username"])
         let userImageFile = userObject!["profilePicture"] as! PFFile
         userImageFile.getDataInBackgroundWithBlock{
@@ -95,7 +95,7 @@ class ProfileViewController: UIViewController {
         }
         if "importFromGPlay" == segue.identifier{
             let vc = segue.destinationViewController as! ImportFromGPlayTableViewController
-            vc.playlists = playlist_data
+            vc.playlists = self.playlist_data
             vc.user = self.userObject
         }
         

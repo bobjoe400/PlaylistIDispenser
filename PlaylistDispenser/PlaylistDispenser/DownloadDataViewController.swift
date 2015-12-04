@@ -40,7 +40,6 @@ class DownloadDataViewController: UIViewController {
                             (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
                             self.gplayData = JSON(data: data!)
                             self.userObject = object
-                            let songsQuery = PFQuery(className: "playlists")
                             self.performSegueWithIdentifier("moveToApp", sender: nil)
                         }
                         download.resume()

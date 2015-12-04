@@ -82,7 +82,7 @@ class ProfileTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        playlists = [JSON]()
+        self.playlists = [JSON]()
         //print("gothere")
         downloadData()
         self.refreshControl = UIRefreshControl()

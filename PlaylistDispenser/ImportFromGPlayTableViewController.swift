@@ -11,14 +11,81 @@ import Parse
 class ImportFromGPlayTableViewController: UITableViewController {
     
     var playlists: JSON?
+    var betterPlaylists: [JSON]?
+    var bestPlaylist: [JSON]?
+    var imgA: [UIImage]?
     var user: PFObject?
     
     @IBAction func unwindToTable(segue: UIStoryboardSegue) {
         performSegueWithIdentifier("unwindToProfile", sender: nil)
     }
     
+    func downloadData(){
+        var preplaylists = [JSON]()
+        var complete = [Bool]()
+        var imgB = [UIImage?]()
+        for i in betterPlaylists!{
+            complete.append(false)
+            imgB.append(nil)
+        }
+        print("finding objects")
+        for (i,obj) in betterPlaylists!.enumerate(){
+            if obj["name"] == ""{
+                continue
+            }
+            dispatch_async(dispatch_get_main_queue()){
+                var json: JSON?
+                json = obj
+                //print(json)
+                var usl = NSURL(string: "")
+                var j = 0
+                var url = ""
+                var length = 0
+                repeat{
+                    print(j)
+                    url = json!["tracks"][j]["track"]["albumArtRef"][0]["url"].stringValue
+                    url = url.stringByReplacingOccurrencesOfString("\\", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+                    length = url.characters.count
+                    print(length)
+                    j++
+                }while length == 0
+                usl = NSURL(string: url)!
+                let dato = NSData(contentsOfURL: usl!)!
+                let image = UIImage(data: dato)
+                imgB[i] = image!
+                //print(json!)
+                preplaylists.append(json!)
+                complete[i] = true
+                var alldone = true
+                for b in complete{
+                    //print(b)
+                    alldone = alldone && b
+                    //print(alldone)
+                }
+                if alldone {
+                    print("dispatching")
+                    dispatch_async(dispatch_get_main_queue()){
+                        self.bestPlaylist = preplaylists
+                        var imgC = [UIImage]()
+                        //var feat = [JSON]()
+                        for j in imgB{
+                            imgC.append(j!)
+                        }
+                        self.imgA = imgC
+                        self.tableView.reloadData()
+                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                    }
+                }
+            }
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        betterPlaylists = playlists!.arrayValue
+        bestPlaylist = [JSON]()
+        //print(betterPlaylists)
+        downloadData()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -40,17 +107,20 @@ class ImportFromGPlayTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return playlists!.arrayValue.count
+        if bestPlaylist!.isEmpty{
+            return 0
+        }
+        return self.bestPlaylist!.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // Configure the cell...
         let cell:basicInfoTableViewCell = tableView.dequeueReusableCellWithIdentifier("basicInfo", forIndexPath: indexPath) as! basicInfoTableViewCell
-        let selected_playlist = self.playlists![indexPath.row]
+        let selected_playlist = self.bestPlaylist![indexPath.row]
         cell.pTitle.text = selected_playlist["name"].stringValue
         cell.numSons.text = String(selected_playlist["tracks"].count)
-        cell.pImage.image = UIImage(named: "xjh15")
+        cell.pImage.image = self.imgA![indexPath.row]
         return cell;
     }
 

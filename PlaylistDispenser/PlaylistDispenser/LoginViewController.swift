@@ -38,8 +38,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         self.userData = foundUserName
                         self.userObject = object
                         self.performSegueWithIdentifier("downloadData", sender: self)
-                    }
-                    else{
+                    } else{
                         let alert = UIAlertView()
                         alert.title = "Error"
                         alert.message = "Wrong username or password"

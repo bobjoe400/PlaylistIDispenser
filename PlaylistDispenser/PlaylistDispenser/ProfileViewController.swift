@@ -94,6 +94,14 @@ class ProfileViewController: UIViewController {
             vc.playlists = playlist_data
             vc.user = self.userObject
         }
+        
+        if (segue.identifier == "profileSettingsSegue") {
+            if let destinationVC = segue.destinationViewController as? SettingsViewController {
+                if self.uName != nil {
+                    destinationVC.currentUser = self.uName!.text
+                }
+            }
+        }
     }
 
 

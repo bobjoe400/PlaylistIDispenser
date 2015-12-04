@@ -14,6 +14,7 @@ class DownloadDataViewController: UIViewController {
     var gplayData: JSON?
     var userObject: PFObject?
     var ip: String?
+    var userPlaylist: [PFObject]?
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var indicatorLabel: UILabel!
     
@@ -24,7 +25,7 @@ class DownloadDataViewController: UIViewController {
         activityIndicator.startAnimating()
         let loginQuery = PFQuery(className: "users")
         let ip = self.ip!
-        print(ip)
+        //print(ip)
         loginQuery.findObjectsInBackgroundWithBlock{
             (objects:[PFObject]?, error: NSError?) -> Void in
             print("Got here")
@@ -33,12 +34,13 @@ class DownloadDataViewController: UIViewController {
                     if object["gplay"] as! Bool == true{
                         self.indicatorLabel.text = "Downloading Google Play Library Data..."
                         let url = NSURL(string: "http://" + ip + "/cgi-bin/download_playlists.py?email=" + String(object["email"]) + "&password=" + String(object["gplayPass"]))
-                        print(url!)
+                        //print(url!)
                         let session = NSURLSession.sharedSession()
                         let download = session.dataTaskWithURL(url!) {
                             (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
                             self.gplayData = JSON(data: data!)
                             self.userObject = object
+                            let songsQuery = PFQuery(className: "playlists")
                             self.performSegueWithIdentifier("moveToApp", sender: nil)
                         }
                         download.resume()

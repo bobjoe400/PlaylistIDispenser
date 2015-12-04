@@ -12,6 +12,11 @@ class ImportFromGPlayTableViewController: UITableViewController {
     
     var playlists: JSON?
     var user: PFObject?
+    
+    @IBAction func unwindToTable(segue: UIStoryboardSegue) {
+        performSegueWithIdentifier("unwindToProfile", sender: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
@@ -45,7 +50,7 @@ class ImportFromGPlayTableViewController: UITableViewController {
         let selected_playlist = self.playlists![indexPath.row]
         cell.pTitle.text = selected_playlist["name"].stringValue
         cell.numSons.text = String(selected_playlist["tracks"].count)
-        //cell.pImage.image =
+        cell.pImage.image = UIImage(named: "xjh15")
         return cell;
     }
 

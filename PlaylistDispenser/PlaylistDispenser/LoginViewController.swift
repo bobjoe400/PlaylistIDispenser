@@ -23,6 +23,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginCheck()
     }
     
+    @IBAction func ipText(sender: AnyObject) {
+            //loginCheck()
+    }
+    
+    @IBAction func unwindToLogin(segue: UIStoryboardSegue) {
+        
+    }
+    
     func loginCheck(){
         let username = usernameTextField.text!
         let password = passwordTextField.text!
@@ -30,36 +38,40 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let loginQuery = PFQuery(className: "users")
         loginQuery.findObjectsInBackgroundWithBlock{
             (objects:[PFObject]?, error: NSError?) -> Void in
+            var check = false
             for object in objects! {
                 let foundUserName = String(object["username"])
                 let foundPassword = String(object["password"])
                 if foundUserName.lowercaseString == username.lowercaseString {
-                    if foundPassword == password  {
+                    if foundPassword == password  /*&& self.ipTextField!.text != ""*/{
                         self.userData = foundUserName
                         self.userObject = object
                         self.performSegueWithIdentifier("downloadData", sender: self)
-                    }
-                    else{
-                        let alert = UIAlertView()
-                        alert.title = "Error"
-                        alert.message = "Wrong username or password"
-                        alert.addButtonWithTitle("Try again")
-                        alert.show()
-                        self.usernameTextField.becomeFirstResponder()
-                    }
-                }
+                    }else{check = true}
+                }else{check = true}
             }
+            self.wrongAlert(check)
+        }
+    }
+    
+    func wrongAlert(check: Bool){
+        if check{
+            print("dixdixdixdix")
+            let alert = UIAlertView()
+            alert.title = "Error"
+            alert.message = "Wrong username or password or IP field is empty"
+            alert.addButtonWithTitle("Try again")
+            alert.show()
+            self.usernameTextField.becomeFirstResponder()
         }
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField == self.usernameTextField{
             self.passwordTextField.becomeFirstResponder()
-        }else if textField == self.passwordTextField{
+        }
+        if textField == self.passwordTextField{
             self.ipTextField.becomeFirstResponder()
-        }else if textField == self.ipTextField{
-            self.resignFirstResponder()
-            loginCheck()
         }
         return true
     }

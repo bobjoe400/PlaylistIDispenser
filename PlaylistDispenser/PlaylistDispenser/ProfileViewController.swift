@@ -24,8 +24,9 @@ class ProfileViewController: UIViewController {
     @IBAction func setButt(sender: AnyObject){
         
     }
-    @IBAction func prepareForUnwind(segue:UIStoryboardSegue){
-        
+    
+    @IBAction func unwindToProfile(segue: UIStoryboardSegue) {
+        self.childViewControllers
     }
     
 //    func delay(delay:Double, closure:()->()) {
@@ -39,6 +40,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(self.childViewControllers)
         print(userObject)
         self.uName.text = String(userObject!["username"])
         let userImageFile = userObject!["profilePicture"] as! PFFile
@@ -87,7 +89,9 @@ class ProfileViewController: UIViewController {
             //detailScene.playlist_data = self.playlist_data
         //}
         if "embedSegue" == segue.identifier{
-            
+            print("gothere")
+            let vc = segue.destinationViewController as! ProfileTableViewController
+            vc.userData = self.userObject
         }
         if "importFromGPlay" == segue.identifier{
             let vc = segue.destinationViewController as! ImportFromGPlayTableViewController

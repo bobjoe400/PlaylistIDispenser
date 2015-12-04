@@ -11,9 +11,84 @@ import Parse
 
 class ProfileTableViewController: UITableViewController {
 
+    var playlists: [JSON]?
+    var imgA: [UIImage]?
+    var userData: PFObject?
+    
+    func downloadData(){
+        let userQuery = PFQuery(className: "users")
+        userQuery.whereKey("username", equalTo: String(userData!["username"]))
+        userQuery.findObjectsInBackgroundWithBlock{
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            let data = objects![0]
+            self.userData!["playlists"] = data["playlists"]
+            self.tableView.reloadData()
+        }
+        var preplaylists = [JSON]()
+        let playlistsQuery = PFQuery(className: "playlists")
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        playlistsQuery.whereKey("user", equalTo: String(userData!["username"]))
+        playlistsQuery.findObjectsInBackgroundWithBlock{
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            var complete = [Bool]()
+            var imgB = [UIImage?]()
+            for i in objects!{
+                complete.append(false)
+                imgB.append(nil)
+            }
+            print("finding objects")
+            for (i,obj) in objects!.enumerate(){
+                let file = obj["gplaydata"] as! PFFile
+                var json: JSON?
+                file.getDataInBackgroundWithBlock{
+                    (data: NSData?, error: NSError?) -> Void in
+                    json = JSON(data: data!)
+                    //print(json)
+                    var usl = NSURL(string: "")
+                    var j = 0
+                    while usl == NSURL(string: ""){
+                        usl = NSURL(string: json!["tracks"][j]["track"]["albumArtRef"][0]["url"].stringValue)!
+                        j++
+                    }
+                    let dato = NSData(contentsOfURL: usl!)!
+                    let image = UIImage(data: dato)
+                    imgB[i] = image!
+                    preplaylists.append(json!)
+                    complete[i] = true
+                    var alldone = true
+                    for b in complete{
+                        //print(b)
+                        alldone = alldone && b
+                        //print(alldone)
+                    }
+                    if alldone {
+                        print("dispatching")
+                        dispatch_async(dispatch_get_main_queue()){
+                            self.playlists = preplaylists
+                            var imgC = [UIImage]()
+                            //var feat = [JSON]()
+                            for j in imgB{
+                                imgC.append(j!)
+                            }
+                            self.imgA = imgC
+                            self.tableView.reloadData()
+                            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        playlists = [JSON]()
+        //print("gothere")
+        downloadData()
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl!.attributedTitle = NSAttributedString(string: "Pull to Refesh")
+        self.refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControl!)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -21,6 +96,11 @@ class ProfileTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+    func refresh(sender:AnyObject){
+        downloadData()
+        self.refreshControl!.endRefreshing()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -30,28 +110,29 @@ class ProfileTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        if playlists!.isEmpty{
+            return 0
+        }
+        return self.playlists!.count
     }
     
     
-//    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        //let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-//
-//        // Configure the cell...
-//
-//        //return cell
-////        let cell:basicInfoTableViewCell = tableView.dequeueReusableCellWithIdentifier("basicInfo", forIndexPath: indexPath) as! basicInfoTableViewCell
-////        let selected_playlist = self.playlists![indexPath.row]
-////        cell.pTitle.text = selected_playlist["name"].stringValue
-////        cell.numSons.text = String(selected_playlist["tracks"].count)
-////        //cell.pImage.image =
-////       return cell;
-//    }
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        //let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+
+        // Configure the cell...
+        let cell:basicInfoTableViewCell = tableView.dequeueReusableCellWithIdentifier("basicInfo", forIndexPath: indexPath) as! basicInfoTableViewCell
+        let selected_playlist = self.playlists![indexPath.row]
+        cell.pTitle.text = selected_playlist["name"].stringValue
+        cell.numSons.text = String(selected_playlist["tracks"].count)
+        cell.pImage.image = self.imgA![indexPath.row]
+       return cell;
+    }
 
 
     /*
@@ -89,14 +170,25 @@ class ProfileTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if "toPlaylist" == segue.identifier{
+            let dest = segue.destinationViewController as! PlaylistViewController
+            let data = playlists![tableView.indexPathForSelectedRow!.row]
+            dest.playlist_data = data
+            dest.pName = data["name"].stringValue
+            dest.num = String(data["tracks"].count)
+            dest.image = self.imgA![tableView.indexPathForSelectedRow!.row]
+            dest.title = data["name"].stringValue
+            dest.uInfo = data["ownerName"].stringValue
+        }
+        
     }
-    */
+
 
 }

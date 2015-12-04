@@ -39,7 +39,7 @@ class importingViewController: UIViewController {
                 new_playlist.saveInBackground()
                 self.user!.saveInBackground()
             }
-            self.performSegueWithIdentifier("backToProfile", sender: nil)
+            self.performSegueWithIdentifier("unwindToTable", sender: nil)
         }
         
 
@@ -62,9 +62,10 @@ class importingViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if segue.identifier == "backToPlaylist"{
-            let dest = segue.destinationViewController as! ProfileViewController
-            dest.userObject = user
+        if segue.identifier == "backToProfile"{
+            let dest1 = segue.destinationViewController as! UINavigationController
+            let dest = dest1.viewControllers[0] as! ProfileViewController
+            dest.userObject = self.user
             dest.playlist_data = self.playlists
             dest.hasgPlay = true
         }

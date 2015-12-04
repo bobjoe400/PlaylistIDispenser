@@ -29,6 +29,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         signupCheck()
     }
     
+    @IBAction func cancelClicked(sender: AnyObject) {
+        self.performSegueWithIdentifier("unwindToLogin", sender: nil)
+    }
     func signupCheck(){
         if self.passwordTextField.text != self.confirmPasswordTextField.text {
             let alert = UIAlertView()
@@ -39,7 +42,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             self.passwordTextField.text = ""
             self.confirmPasswordTextField.text = ""
             self.passwordTextField.becomeFirstResponder()
-        } else if (self.passwordTextField.text=="") || (self.confirmPasswordTextField.text=="") || (self.usernameTextField.text=="") || (self.emailTextField.text=="") {
+        }else if ((self.passwordTextField.text=="") || (self.confirmPasswordTextField.text=="") || (self.usernameTextField.text=="") || (self.emailTextField.text=="")) {
             let alert = UIAlertView()
             alert.title = "Error"
             alert.message = "Error: Blank Field"
@@ -57,7 +60,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             signUpData.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
                 print(signUpData)
             }
-            performSegueWithIdentifier("segueSignUptoLogin", sender: nil)
+            self.performSegueWithIdentifier("unwindToLogin", sender: nil)
         }
     }
     

@@ -18,6 +18,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var selectPictureButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     }
     
     @IBAction func selectPictureButtonClicked(sender: AnyObject) {
+        selectPictureButton.hidden = true
         var pictureSelector = UIImagePickerController()
         pictureSelector.delegate = self
         pictureSelector.sourceType = UIImagePickerControllerSourceType.PhotoLibrary

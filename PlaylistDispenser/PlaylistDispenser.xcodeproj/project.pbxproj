@@ -25,6 +25,7 @@
 		DF5312F11C11099C005B2259 /* ImportingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5312F01C11099C005B2259 /* ImportingTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DF5312F51C114164005B2259 /* importingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5312F41C114164005B2259 /* importingViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DF5312FA1C11486C005B2259 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF5312FC1C11486C005B2259 /* Main.storyboard */; };
+		DF5747F31C119636005BA66C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5747F21C119636005BA66C /* SettingsViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DF5BDE691BFD906900239038 /* LocalData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF5BDE671BFD906900239038 /* LocalData.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
 		DF5BDE6C1BFD96C100239038 /* IsSaved+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5BDE6A1BFD96C100239038 /* IsSaved+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
 		DF5BDE6D1BFD96C100239038 /* IsSaved.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5BDE6B1BFD96C100239038 /* IsSaved.swift */; settings = {ASSET_TAGS = (); }; };
@@ -43,7 +44,6 @@
 		DFB6A0B31BFD222B0001FD6F /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6A0B21BFD222B0001FD6F /* SongTableViewCell.swift */; };
 		DFC79B201C1122DD007FD091 /* SearchResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC79B1F1C1122DD007FD091 /* SearchResultTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DFC79B221C11230B007FD091 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC79B211C11230B007FD091 /* SearchViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		DFC79B241C115A61007FD091 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC79B231C115A61007FD091 /* SettingsViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DFD728631BFE80F800472F20 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD728621BFE80F800472F20 /* LoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DFF8C7221BFBE44F00FDFDA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF8C7211BFBE44F00FDFDA4 /* AppDelegate.swift */; };
 		DFF8C72B1BFBE44F00FDFDA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFF8C72A1BFBE44F00FDFDA4 /* Assets.xcassets */; };
@@ -89,6 +89,7 @@
 		DF5312F01C11099C005B2259 /* ImportingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportingTableViewController.swift; sourceTree = "<group>"; };
 		DF5312F41C114164005B2259 /* importingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = importingViewController.swift; sourceTree = "<group>"; };
 		DF5312FB1C11486C005B2259 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DF5747F21C119636005BA66C /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		DF5BDE681BFD906900239038 /* LocalData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalData.xcdatamodel; sourceTree = "<group>"; };
 		DF5BDE6A1BFD96C100239038 /* IsSaved+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IsSaved+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DF5BDE6B1BFD96C100239038 /* IsSaved.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsSaved.swift; sourceTree = "<group>"; };
@@ -107,7 +108,6 @@
 		DFB6A0B21BFD222B0001FD6F /* SongTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
 		DFC79B1F1C1122DD007FD091 /* SearchResultTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewController.swift; sourceTree = "<group>"; };
 		DFC79B211C11230B007FD091 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		DFC79B231C115A61007FD091 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		DFD728621BFE80F800472F20 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DFF8C71E1BFBE44F00FDFDA4 /* PlaylistDispenser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlaylistDispenser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFF8C7211BFBE44F00FDFDA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -178,6 +178,7 @@
 				DF3D93171C0FE5A2001307D6 /* ImportFromGPlayTableViewController.swift */,
 				DF5312F01C11099C005B2259 /* ImportingTableViewController.swift */,
 				DF5312F41C114164005B2259 /* importingViewController.swift */,
+				DF5747F21C119636005BA66C /* SettingsViewController.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -433,8 +434,8 @@
 			files = (
 				DFD728631BFE80F800472F20 /* LoginViewController.swift in Sources */,
 				DFB6A0AD1BFD21F50001FD6F /* ProfileViewController.swift in Sources */,
+				DF5747F31C119636005BA66C /* SettingsViewController.swift in Sources */,
 				DFF8C7521BFBE85E00FDFDA4 /* basicInfoTableViewCell.swift in Sources */,
-				DFC79B241C115A61007FD091 /* SettingsViewController.swift in Sources */,
 				DF5BDE6C1BFD96C100239038 /* IsSaved+CoreDataProperties.swift in Sources */,
 				DFB6A0AF1BFD21FB0001FD6F /* PlaylistViewController.swift in Sources */,
 				A334E1281BFD2EB100C20B7C /* SwiftyJSON.swift in Sources */,

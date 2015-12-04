@@ -14,6 +14,10 @@ class FeaturedTableViewController: UITableViewController {
     var featuredPlaylists = [JSON]()
     var imgA = [UIImage]()
     
+    @IBAction func unwindToFeatured(segue: UIStoryboardSegue){
+        
+    }
+    
     func downloadPlaylistInfo(){
         let featuredQuery = PFQuery(className: "featuredPlaylistsUrls")
         featuredQuery.findObjectsInBackgroundWithBlock{
@@ -204,6 +208,10 @@ class FeaturedTableViewController: UITableViewController {
             dest.image = self.imgA[tableView.indexPathForSelectedRow!.row]
             dest.title = data["name"].stringValue
             dest.uInfo = data["ownerName"].stringValue
+        }
+        if "toExport" == segue.identifier{
+            let dest = segue.destinationViewController as! ExportViewController
+            dest.whereFrom = "featured"
         }
     }
 }

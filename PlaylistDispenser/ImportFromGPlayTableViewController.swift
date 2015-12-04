@@ -11,7 +11,7 @@ import Parse
 class ImportFromGPlayTableViewController: UITableViewController {
     
     var playlists: JSON?
-    var betterPlaylists: [JSON]?
+    //var betterPlaylists: [JSON]?
     var bestPlaylist: [JSON]?
     var imgA: [UIImage]?
     var user: PFObject?
@@ -21,16 +21,22 @@ class ImportFromGPlayTableViewController: UITableViewController {
     }
     
     func downloadData(){
+        let betterPlaylists = self.playlists!.array
         var preplaylists = [JSON]()
         var complete = [Bool]()
         var imgB = [UIImage?]()
         for i in betterPlaylists!{
+            if i["name"] == "Niko's playlist"{
+                complete.append(true)
+                imgB.append(nil)
+                continue
+            }
             complete.append(false)
             imgB.append(nil)
         }
         print("finding objects")
         for (i,obj) in betterPlaylists!.enumerate(){
-            if obj["name"] == "Niko's playlist"{
+            if obj["name"] == "Niko's playlist" || obj["name"] == " "{
                 continue
             }
             var json: JSON?
@@ -40,46 +46,60 @@ class ImportFromGPlayTableViewController: UITableViewController {
             var j = 0
             var url = ""
             var length = 0
-            //print (obj["name"])
-            var urlfound = true
-            while j < json!["tracks"].count && urlfound{
+            print (obj["name"])
+            var urlfound = false
+            while j < json!["tracks"].count && !urlfound{
                 //print(j)
-                urlfound = true
+                urlfound = false
                 url = json!["tracks"][j]["track"]["albumArtRef"][0]["url"].stringValue
                 url = url.stringByReplacingOccurrencesOfString("\\", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
                 length = url.characters.count
+                if let checkedUrl = NSURL(string: url) {
+                    //imageURL.contentMode = .ScaleAspectFit
+                    downloadImage(checkedUrl)
+                }
                 if length != 0{
-                    urlfound = false
+                    urlfound = true
                 }
                 //print(length)
                 j++
             }
             print(url)
-            usl = NSURL(string: url)!
-            let dato = NSData(contentsOfURL: usl!)!
-            let image = UIImage(data: dato)
-            print(image)
-            imgB[i] = image!
+//            usl = NSURL(string: url)!
+//            let dato = NSData(contentsOfURL: usl!)!
+//            let image = UIImage(data: dato)
+//            print(image)
+//            imgB[i] = image!
             //print(json!)
             preplaylists.append(json!)
+            //print(preplaylists)
+            print(complete[i])
             complete[i] = true
+            print(complete[i])
             var alldone = true
+            print(complete)
+            //complete[8] = true
             for b in complete{
                 //print(b)
                 alldone = alldone && b
-                print(alldone)
             }
+                //print(alldon
+            print(alldone)
             if alldone {
                 print(imgB)
                 print("dispatching")
                 dispatch_async(dispatch_get_main_queue()){
-                    self.bestPlaylist = preplaylists
+                    //self.bestPlaylist = preplaylists
                     var imgC = [UIImage]()
-                    //var feat = [JSON]()
-                    for j in imgB{
-                        imgC.append(j!)
+                    var feat = [JSON]()
+                    for j in preplaylists{
+                        feat.append(j)
                     }
-                    self.imgA = imgC
+                    //for j in imgB{
+                      //  imgC.append(j!)
+                   // }
+                    self.bestPlaylist = feat
+                    //self.imgA = imgC
                     self.tableView.reloadData()
                     UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                 }
@@ -87,9 +107,29 @@ class ImportFromGPlayTableViewController: UITableViewController {
         }
     }
 
+    func getDataFromUrl(url:NSURL, completion: ((data: NSData?, response: NSURLResponse?, error: NSError? ) -> Void)) {
+        NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
+            completion(data: data, response: response, error: error)
+            }.resume()
+    }
+    
+    func downloadImage(url: NSURL) -> Bool{
+        //print("Started downloading \"\(url.URLByDeletingPathExtension!.lastPathComponent!)\".")
+        getDataFromUrl(url) { (data, response, error)  in
+            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                guard let data = data where error == nil else { return }
+                print("Finished downloading \"\(url.URLByDeletingPathExtension!.lastPathComponent!)\".")
+                self.imgA!.append(UIImage(data: data)!)
+            }
+            //return true
+        }
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        betterPlaylists = playlists!.arrayValue
+        imgA = [UIImage]()
+        //betterPlaylists = playlists!.arrayValue
         bestPlaylist = [JSON]()
         //print(betterPlaylists)
         downloadData()

@@ -16,8 +16,6 @@ class basicInfoTableViewCell: UITableViewCell {
     @IBOutlet weak var pImage: UIImageView!
     @IBAction func saveBut(sender: AnyObject) {
     }
-    @IBAction func exBut(sender: AnyObject) {
-    }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

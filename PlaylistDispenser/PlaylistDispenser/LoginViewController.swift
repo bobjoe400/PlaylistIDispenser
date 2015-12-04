@@ -22,10 +22,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginCheck()
     }
     
-    @IBAction func ipText(sender: AnyObject) {
-            //loginCheck()
-    }
-    
     @IBAction func unwindToLogin(segue: UIStoryboardSegue) {
         
     }
@@ -73,6 +69,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if textField == self.passwordTextField{
             self.ipTextField.becomeFirstResponder()
         }
+        if textField == self.ipTextField{
+            loginCheck()
+            self.resignFirstResponder()
+        }
         return true
     }
     
@@ -80,6 +80,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         usernameTextField.delegate = self
         passwordTextField.delegate = self
+        ipTextField.delegate = self
         passwordTextField.clearsOnBeginEditing = true
         // Do any additional setup after loading the view.
     }

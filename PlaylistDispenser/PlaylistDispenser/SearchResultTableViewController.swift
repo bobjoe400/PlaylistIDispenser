@@ -14,6 +14,11 @@ class SearchResultTableViewController: UITableViewController {
     var dataToDisplay:[PFObject]?
     var playlists: [JSON]?
     var imgA: [UIImage]?
+    
+    @IBAction func unwindToSearch(segue: UIStoryboardSegue){
+        
+    }
+    
     func getJSON(){
         var preplaylists = [JSON]()
         var complete = [Bool]()
@@ -39,7 +44,7 @@ class SearchResultTableViewController: UITableViewController {
                 let dato = NSData(contentsOfURL: usl!)!
                 let image = UIImage(data: dato)
                 imgB[i] = image!
-                print(json!)
+                //print(json!)
                 preplaylists.append(json!)
                 complete[i] = true
                 var alldone = true

@@ -64,6 +64,10 @@ class SearchViewController: UIViewController {
                 
             }
         }
+        if segue.identifier == "toExport" {
+            let dest = segue.destinationViewController as! ExportViewController
+            dest.whereFrom = "search"
+        }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }

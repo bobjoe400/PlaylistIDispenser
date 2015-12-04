@@ -30,51 +30,58 @@ class ImportFromGPlayTableViewController: UITableViewController {
         }
         print("finding objects")
         for (i,obj) in betterPlaylists!.enumerate(){
-            if obj["name"] == ""{
+            if obj["name"] == "Niko's playlist"{
                 continue
             }
-            dispatch_async(dispatch_get_main_queue()){
-                var json: JSON?
-                json = obj
-                //print(json)
-                var usl = NSURL(string: "")
-                var j = 0
-                var url = ""
-                var length = 0
-                repeat{
-                    print(j)
-                    url = json!["tracks"][j]["track"]["albumArtRef"][0]["url"].stringValue
-                    url = url.stringByReplacingOccurrencesOfString("\\", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
-                    length = url.characters.count
-                    print(length)
-                    j++
-                }while length == 0
-                usl = NSURL(string: url)!
-                let dato = NSData(contentsOfURL: usl!)!
-                let image = UIImage(data: dato)
-                imgB[i] = image!
-                //print(json!)
-                preplaylists.append(json!)
-                complete[i] = true
-                var alldone = true
-                for b in complete{
-                    //print(b)
-                    alldone = alldone && b
-                    //print(alldone)
+            var json: JSON?
+            json = obj
+            //print(json
+            var usl = NSURL(string: "")
+            var j = 0
+            var url = ""
+            var length = 0
+            //print (obj["name"])
+            var urlfound = true
+            while j < json!["tracks"].count && urlfound{
+                //print(j)
+                urlfound = true
+                url = json!["tracks"][j]["track"]["albumArtRef"][0]["url"].stringValue
+                url = url.stringByReplacingOccurrencesOfString("\\", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+                length = url.characters.count
+                if length != 0{
+                    urlfound = false
                 }
-                if alldone {
-                    print("dispatching")
-                    dispatch_async(dispatch_get_main_queue()){
-                        self.bestPlaylist = preplaylists
-                        var imgC = [UIImage]()
-                        //var feat = [JSON]()
-                        for j in imgB{
-                            imgC.append(j!)
-                        }
-                        self.imgA = imgC
-                        self.tableView.reloadData()
-                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                //print(length)
+                j++
+            }
+            print(url)
+            usl = NSURL(string: url)!
+            let dato = NSData(contentsOfURL: usl!)!
+            let image = UIImage(data: dato)
+            print(image)
+            imgB[i] = image!
+            //print(json!)
+            preplaylists.append(json!)
+            complete[i] = true
+            var alldone = true
+            for b in complete{
+                //print(b)
+                alldone = alldone && b
+                print(alldone)
+            }
+            if alldone {
+                print(imgB)
+                print("dispatching")
+                dispatch_async(dispatch_get_main_queue()){
+                    self.bestPlaylist = preplaylists
+                    var imgC = [UIImage]()
+                    //var feat = [JSON]()
+                    for j in imgB{
+                        imgC.append(j!)
                     }
+                    self.imgA = imgC
+                    self.tableView.reloadData()
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                 }
             }
         }

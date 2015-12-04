@@ -15,7 +15,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     var userData: String?
-    var found = false
     var isCorrectPassword = false
     var userObject: PFObject?
 
@@ -38,7 +37,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let loginQuery = PFQuery(className: "users")
         loginQuery.findObjectsInBackgroundWithBlock{
             (objects:[PFObject]?, error: NSError?) -> Void in
-            var check = false
+            var found = false
             for object in objects! {
                 let foundUserName = String(object["username"])
                 let foundPassword = String(object["password"])
@@ -47,15 +46,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         self.userData = foundUserName
                         self.userObject = object
                         self.performSegueWithIdentifier("downloadData", sender: self)
-                    }else{check = true}
-                }else{check = true}
+                        found = true
+                    }
+                }
             }
-            self.wrongAlert(check)
+            self.wrongAlert(!found)
         }
     }
     
     func wrongAlert(check: Bool){
-        if check{
+        if check {
             print("dixdixdixdix")
             let alert = UIAlertView()
             alert.title = "Error"

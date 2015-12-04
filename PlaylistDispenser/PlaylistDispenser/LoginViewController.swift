@@ -72,6 +72,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if textField == self.passwordTextField{
             self.ipTextField.becomeFirstResponder()
         }
+        if textField == self.ipTextField {
+            loginCheck()
+        }
         return true
     }
     
@@ -79,6 +82,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         usernameTextField.delegate = self
         passwordTextField.delegate = self
+        ipTextField.delegate = self
         passwordTextField.clearsOnBeginEditing = true
         // Do any additional setup after loading the view.
     }

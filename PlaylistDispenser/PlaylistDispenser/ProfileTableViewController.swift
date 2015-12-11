@@ -12,8 +12,9 @@ import Parse
 class ProfileTableViewController: UITableViewController {
 
     var playlists: [JSON]?
-    var imgA: [UIImage]?
+    var imgA: [UIImage?]?
     var userData: PFObject?
+    var ip: String?
     
     func downloadData(){
         let userQuery = PFQuery(className: "users")
@@ -25,54 +26,78 @@ class ProfileTableViewController: UITableViewController {
             self.tableView.reloadData()
         }
         var preplaylists = [JSON]()
-        let playlistsQuery = PFQuery(className: "playlists")
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        playlistsQuery.whereKey("user", equalTo: String(userData!["username"]))
-        playlistsQuery.findObjectsInBackgroundWithBlock{
-            (objects: [PFObject]?, error: NSError?) -> Void in
-            var complete = [Bool]()
-            var imgB = [UIImage?]()
-            for i in objects!{
-                complete.append(false)
-                imgB.append(nil)
-            }
-            print("finding objects")
-            for (i,obj) in objects!.enumerate(){
-                let file = obj["gplaydata"] as! PFFile
-                var json: JSON?
-                file.getDataInBackgroundWithBlock{
-                    (data: NSData?, error: NSError?) -> Void in
-                    json = JSON(data: data!)
-                    //print(json)
-                    var usl = NSURL(string: "")
-                    var j = 0
-                    while usl == NSURL(string: ""){
-                        usl = NSURL(string: json!["tracks"][j]["track"]["albumArtRef"][0]["url"].stringValue)!
-                        j++
+        var objects = [PFObject]()
+        let playlist = self.userData!["playlists"] as! [String]
+        var comp = [Bool]()
+        for i in playlist.enumerate(){
+            comp.append(false)
+        }
+        var alltrue2 = false
+        for (i,obj) in playlist.enumerate(){
+            let playlistQuery = PFQuery(className: "playlists")
+            playlistQuery.findObjectsInBackgroundWithBlock{
+                (objectss: [PFObject]?, error: NSError?) -> Void in
+                for j in objectss!{
+                    if j["name"] as! String == String(obj){
+                        objects.append(j)
+                        comp[i] = true
                     }
-                    let dato = NSData(contentsOfURL: usl!)!
-                    let image = UIImage(data: dato)
-                    imgB[i] = image!
-                    preplaylists.append(json!)
-                    complete[i] = true
-                    var alldone = true
-                    for b in complete{
-                        //print(b)
-                        alldone = alldone && b
-                        //print(alldone)
-                    }
-                    if alldone {
-                        print("dispatching")
-                        dispatch_async(dispatch_get_main_queue()){
-                            self.playlists = preplaylists
-                            var imgC = [UIImage]()
-                            //var feat = [JSON]()
-                            for j in imgB{
-                                imgC.append(j!)
+                }
+                alltrue2 = true
+                for b in comp{
+                    alltrue2 = alltrue2 && b
+                }
+                if alltrue2{
+                    dispatch_async(dispatch_get_main_queue()){
+                        var complete = [Bool]()
+                        var imgB = [UIImage?]()
+                        for i in objects{
+                            preplaylists.append(nil)
+                            complete.append(false)
+                            imgB.append(nil)
+                        }
+                        print("finding objects")
+                        for (i,obj) in objects.enumerate(){
+                            let file = obj["gplaydata"] as! PFFile
+                            var json: JSON?
+                            file.getDataInBackgroundWithBlock{
+                                (data: NSData?, error: NSError?) -> Void in
+                                json = JSON(data: data!)
+                                var usl = NSURL(string: "")
+                                var j = 0
+                                while usl ==  NSURL(string: "") && j < json!["tracks"].count{
+                                    usl = NSURL(string: json!["tracks"][j]["track"]["albumArtRef"][0]["url"].stringValue)!
+                                    j++
+                                }
+                                if let dato = NSData(contentsOfURL: usl!){
+                                    let image = UIImage(data: dato)
+                                    imgB[i] = image!
+                                }
+                                preplaylists[i] = json!
+                                complete[i] = true
+                                var alldone = true
+                                for b in complete{
+                                    alldone = alldone && b
+                                }
+                                if alldone {
+                                    print("dispatching")
+                                    dispatch_async(dispatch_get_main_queue()){
+                                        self.playlists = preplaylists
+                                        var imgC = [UIImage?]()
+                                        for j in imgB{
+                                            if j == nil{
+                                                imgC.append(nil)
+                                            }else{
+                                                imgC.append(j!)
+                                            }
+                                        }
+                                        self.imgA = imgC
+                                        self.tableView.reloadData()
+                                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                                    }
+                                }
                             }
-                            self.imgA = imgC
-                            self.tableView.reloadData()
-                            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                         }
                     }
                 }
@@ -83,17 +108,15 @@ class ProfileTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.playlists = [JSON]()
-        //print("gothere")
+        self.imgA = [UIImage]()
         downloadData()
         self.refreshControl = UIRefreshControl()
         self.refreshControl!.attributedTitle = NSAttributedString(string: "Pull to Refesh")
         self.refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControl!)
         // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     func refresh(sender:AnyObject){
@@ -130,7 +153,11 @@ class ProfileTableViewController: UITableViewController {
         let selected_playlist = self.playlists![indexPath.row]
         cell.pTitle.text = selected_playlist["name"].stringValue
         cell.numSons.text = String(selected_playlist["tracks"].count)
-        cell.pImage.image = self.imgA![indexPath.row]
+        if self.imgA![indexPath.row] == nil{
+           cell.pImage.image = UIImage(named: "noart")
+        }else{
+            cell.pImage.image = self.imgA![indexPath.row]
+        }
        return cell;
     }
 
@@ -182,10 +209,17 @@ class ProfileTableViewController: UITableViewController {
             let data = playlists![tableView.indexPathForSelectedRow!.row]
             dest.playlist_data = data
             dest.pName = data["name"].stringValue
-            dest.num = String(data["tracks"].count)
-            dest.image = self.imgA![tableView.indexPathForSelectedRow!.row]
+            if self.imgA![tableView.indexPathForSelectedRow!.row] == nil{
+                dest.image = UIImage(named: "noart")
+            }else{
+                dest.image = self.imgA![tableView.indexPathForSelectedRow!.row]
+            }
             dest.title = data["name"].stringValue
             dest.uInfo = data["ownerName"].stringValue
+            dest.num = String(data["tracks"].count)
+            dest.userData = self.userData
+            dest.ip = self.ip
+            dest.whereFrom = "Profile"
         }
         
     }

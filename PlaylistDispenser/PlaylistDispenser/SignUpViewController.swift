@@ -39,7 +39,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     
     @IBAction func selectPictureButtonClicked(sender: AnyObject) {
         selectPictureButton.hidden = true
-        var pictureSelector = UIImagePickerController()
+        let pictureSelector = UIImagePickerController()
         pictureSelector.delegate = self
         pictureSelector.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         self.presentViewController(pictureSelector, animated: true, completion: nil)
@@ -85,6 +85,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
             signUpData["password"] = password
             signUpData["email"] = email
             signUpData["gplay"] = false
+            signUpData["playlists"] = [String]()
             signUpData.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
                 print(signUpData)
             }

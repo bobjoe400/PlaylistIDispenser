@@ -8,18 +8,23 @@
 
 import UIKit
 import CoreData
-
+import Parse
 class PlaylistViewController: UIViewController {
-
+    var userData: PFObject?
     weak var embedvc: PlaylistTableViewController?
     var playlist_data: JSON?
     var pName: String?
     var num: String?
     var image: UIImage?
     var uInfo: String?
+    var ip: String?
+    var whereFrom: String?
     //var managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     var check: Bool?
     
+    @IBAction func exportPlaylist(sender: AnyObject) {
+        self.performSegueWithIdentifier("toExport", sender: nil)
+    }
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
     }
     @IBOutlet weak var uName: UILabel!
@@ -45,12 +50,14 @@ class PlaylistViewController: UIViewController {
         self.pImage.image = self.image!
         self.pTitle.text = self.pName!
         self.numSongs.text = self.num!
-        self.check = false
+        let checkArray = self.userData!["playlists"] as! [String]
+        print(checkArray)
+        if checkArray.contains(self.playlist_data!["name"].stringValue){
+            self.check = false
+        }else{
+            self.check = true
+        }
         self.uName.text = self.uInfo!
-        //let newItem = NSEntityDescription.insertNewObjectForEntityForName("IsSaved", inManagedObjectContext: self.managedObjectContext) as! IsSaved
-        //newItem.isit = false
-        //check = newItem.isit as Bool
-        //print(check)
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,6 +75,13 @@ class PlaylistViewController: UIViewController {
         if segue.identifier == "embedSegue"{
             let detailScene = segue.destinationViewController as! PlaylistTableViewController
             detailScene.playlist_data = self.playlist_data
+        }
+        if segue.identifier == "toExport"{
+            let dest = segue.destinationViewController as! ExportViewController
+            dest.playlistData = self.playlist_data
+            dest.userData = self.userData
+            dest.whereFrom = self.whereFrom
+            dest.ip = self.ip
         }
     }
 }

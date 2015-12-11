@@ -16,6 +16,7 @@ class ProfileViewController: UIViewController {
     var playlist_data: JSON?
     var hasgPlay: Bool?
     var userObject: PFObject?
+    var ip: String?
     
     
     @IBOutlet weak var gButton: UIButton!
@@ -24,24 +25,14 @@ class ProfileViewController: UIViewController {
     @IBAction func setButt(sender: AnyObject){
         
     }
+    @IBOutlet weak var importButt: UIButton!
     
     @IBAction func unwindToProfile(segue: UIStoryboardSegue) {
         self.childViewControllers
     }
     
-//    func delay(delay:Double, closure:()->()) {
-//        dispatch_after(
-//            dispatch_time(
-//                DISPATCH_TIME_NOW,
-//                Int64(delay * Double(NSEC_PER_SEC))
-//            ),
-//            dispatch_get_main_queue(), closure)
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //print(self.childViewControllers)
-        //print(userObject)
         self.uName.text = String(userObject!["username"])
         let userImageFile = userObject!["profilePicture"] as! PFFile
         userImageFile.getDataInBackgroundWithBlock{
@@ -52,22 +43,10 @@ class ProfileViewController: UIViewController {
                 }
             }
         }
-        
-        //print(playlist_data)
-//        delay(0.5){
-//            let loginformVC = self.childViewControllers.last as! FeaturedTableViewController
-//            let playlist_data = loginformVC.featuredPlaylists[0] as JSON
-//            self.uName.text = playlist_data["ownerName"].stringValue
-//            self.uCity.text = "San Luis Obisbo, CA"
-//            var usl = NSURL(string: "")
-//            var j = 0
-//            while usl == NSURL(string: ""){
-//                usl = NSURL(string: playlist_data["tracks"][j]["track"]["albumArtRef"][0]["url"].stringValue)!
-//                j++
-//            }
-//            let dato = NSData(contentsOfURL: usl!)!
-//            self.uImage.image = UIImage(data: dato)
-//        }
+        let gplay = self.userObject!["gplay"] as! Bool
+        if !gplay{
+            self.importButt.hidden = true
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -84,22 +63,19 @@ class ProfileViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        //if "embedSegue" == segue.identifier{
-          //  let detailScene = segue.destinationViewController as! FeaturedTableViewController
-            //detailScene.playlist_data = self.playlist_data
-        //}
         if "embedSegue" == segue.identifier{
             print("gothere")
             let vc = segue.destinationViewController as! ProfileTableViewController
             vc.userData = self.userObject
+            vc.ip = self.ip
         }
         if "importFromGPlay" == segue.identifier{
             let vc = segue.destinationViewController as! ImportFromGPlayTableViewController
-            vc.playlists = self.playlist_data
+            vc.playlists = self.playlist_data!
             vc.user = self.userObject
         }
         
-        if (segue.identifier == "profileSettingsSegue") {
+        if segue.identifier == "profileSettingsSegue" {
             let vc = segue.destinationViewController as! SettingsViewController
             vc.userData = self.userObject!
         }

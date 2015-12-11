@@ -19,13 +19,15 @@ class importingViewController: UIViewController {
         super.viewDidLoad()
         let new_playlist = PFObject(className: "playlists")
         let query = PFQuery(className: "playlists")
-        
         query.findObjectsInBackgroundWithBlock {
             (playlists: [PFObject]?, error: NSError?) -> Void in
             for data in playlists!{
                 if String(data["name"]) == String(self.playlist!["name"]){
                     self.good = false
-                    print("Already exists")
+                    if !self.user!["playlists"].containsObject(String(self.playlist!["name"])){
+                        self.user!.addObject(String(self.playlist!["name"]),forKey: "playlists")
+                        self.user!.saveInBackground()
+                    }
                 }
             }
             if self.good == true{
@@ -61,14 +63,14 @@ class importingViewController: UIViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        if segue.identifier == "backToProfile"{
-            let dest1 = segue.destinationViewController as! UINavigationController
-            let dest = dest1.viewControllers[0] as! ProfileViewController
-            dest.userObject = self.user
-            dest.playlist_data = self.playlists
-            dest.hasgPlay = true
-        }
+//        // Pass the selected object to the new view controller.
+//        if segue.identifier == "backToProfile"{
+//            let dest1 = segue.destinationViewController as! UINavigationController
+//            let dest = dest1.viewControllers[0] as! ProfileViewController
+//            dest.userObject = self.user
+//            dest.playlist_data = self.playlists
+//            dest.hasgPlay = true
+//        }
         
     }
 

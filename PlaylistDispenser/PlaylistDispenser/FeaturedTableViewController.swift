@@ -12,8 +12,9 @@ import Parse
 class FeaturedTableViewController: UITableViewController {
     
     var featuredPlaylists = [JSON]()
+    var userData: PFObject?
     var imgA = [UIImage]()
-    
+    var ip: String?
     @IBAction func unwindToFeatured(segue: UIStoryboardSegue){
         
     }
@@ -34,8 +35,6 @@ class FeaturedTableViewController: UITableViewController {
                 imgB.append(nil)
                 featuredPlaylist.append(nil)
             }
-            print(urls)
-            
             for (i,url) in urls.enumerate(){
                 if let urlstring = NSURL(string: url) {
                     let session = NSURLSession.sharedSession()
@@ -66,8 +65,6 @@ class FeaturedTableViewController: UITableViewController {
                         }
                         if alldone{
                             dispatch_async(dispatch_get_main_queue()){
-                                //self.featuredPlaylists = featuredPlaylist
-                                //self.imgA = imgB
                                 var imgC = [UIImage]()
                                 var feat = [JSON]()
                                 for j in imgB{
@@ -208,10 +205,15 @@ class FeaturedTableViewController: UITableViewController {
             dest.image = self.imgA[tableView.indexPathForSelectedRow!.row]
             dest.title = data["name"].stringValue
             dest.uInfo = data["ownerName"].stringValue
+            dest.userData = self.userData
+            dest.ip = self.ip
+            dest.whereFrom = "Featured"
         }
         if "toExport" == segue.identifier{
             let dest = segue.destinationViewController as! ExportViewController
-            dest.whereFrom = "featured"
+            dest.whereFrom = "Featured"
+            dest.userData = self.userData
+            dest.ip = self.ip
         }
     }
 }

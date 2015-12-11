@@ -9,23 +9,27 @@
 import UIKit
 import Parse
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, UITextFieldDelegate{
 
     @IBOutlet weak var searchBox: UITextField!
     var data:[PFObject]!
+    var userData: PFObject?
+    var ip: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.searchBox.delegate = self
         // Do any additional setup after loading the view.
     }
 
     @IBAction func searchButtonClicked(sender: AnyObject) {
-        var searchText = searchBox.text
+        search()
+    }
+    
+    func search(){
+        let searchText = searchBox.text
         let query = PFQuery(className: "playlists")
         if (searchText != nil) {
-            //let predicate = NSPredicate(format: "name ="+searchText!)
-            //query = PFQuery(className: "playlists", predicate: predicate)
             query.whereKey("name", matchesRegex: searchText!, modifiers: "i")
         }
         query.findObjectsInBackgroundWithBlock {
@@ -40,6 +44,7 @@ class SearchViewController: UIViewController {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.resignFirstResponder()
+        search()
         return true
     }
     
@@ -60,6 +65,8 @@ class SearchViewController: UIViewController {
             if let destinationVC = segue.destinationViewController as? SearchResultTableViewController{
                 if (data != nil) {
                     destinationVC.dataToDisplay = data
+                    destinationVC.ip = self.ip
+                    destinationVC.userData = self.userData
                 }
                 
             }

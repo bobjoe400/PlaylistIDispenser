@@ -18,7 +18,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     var isCorrectPassword = false
     var userObject: PFObject?
 
-    @IBAction func loginButtonClicked(sender: AnyObject) {
+
+    @IBAction func loginButton(sender: AnyObject) {
         loginCheck()
     }
     
@@ -71,9 +72,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if textField == self.ipTextField{
             loginCheck()
             self.resignFirstResponder()
-        }
-        if textField == self.ipTextField {
-            loginCheck()
         }
         return true
     }

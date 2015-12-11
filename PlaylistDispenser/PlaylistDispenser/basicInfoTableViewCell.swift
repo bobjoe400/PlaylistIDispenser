@@ -14,8 +14,6 @@ class basicInfoTableViewCell: UITableViewCell {
     @IBOutlet weak var pTitle: UILabel!
     @IBOutlet weak var numSons: UILabel!
     @IBOutlet weak var pImage: UIImageView!
-    @IBAction func saveBut(sender: AnyObject) {
-    }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

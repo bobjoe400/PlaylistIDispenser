@@ -14,6 +14,8 @@ class SearchResultTableViewController: UITableViewController {
     var dataToDisplay:[PFObject]?
     var playlists: [JSON]?
     var imgA: [UIImage]?
+    var ip: String?
+    var userData: PFObject?
     
     @IBAction func unwindToSearch(segue: UIStoryboardSegue){
         
@@ -34,7 +36,6 @@ class SearchResultTableViewController: UITableViewController {
             file.getDataInBackgroundWithBlock{
                 (data: NSData?, error: NSError?) -> Void in
                 json = JSON(data: data!)
-                //print(json)
                 var usl = NSURL(string: "")
                 var j = 0
                 while usl == NSURL(string: ""){
@@ -44,21 +45,17 @@ class SearchResultTableViewController: UITableViewController {
                 let dato = NSData(contentsOfURL: usl!)!
                 let image = UIImage(data: dato)
                 imgB[i] = image!
-                //print(json!)
                 preplaylists.append(json!)
                 complete[i] = true
                 var alldone = true
                 for b in complete{
-                    //print(b)
                     alldone = alldone && b
-                    //print(alldone)
                 }
                 if alldone {
                     print("dispatching")
                     dispatch_async(dispatch_get_main_queue()){
                         self.playlists = preplaylists
                         var imgC = [UIImage]()
-                        //var feat = [JSON]()
                         for j in imgB{
                             imgC.append(j!)
                         }
@@ -168,6 +165,9 @@ class SearchResultTableViewController: UITableViewController {
             dest.image = self.imgA![tableView.indexPathForSelectedRow!.row]
             dest.title = data["name"].stringValue
             dest.uInfo = data["ownerName"].stringValue
+            dest.ip = self.ip
+            dest.userData = userData
+            dest.whereFrom = "Search"
         }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
